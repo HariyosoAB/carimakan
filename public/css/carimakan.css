@@ -1,0 +1,164 @@
+
+
+.box{
+  border: none !important;
+  box-shadow: none !important;
+
+}
+.thumbnail{
+  border:none !important;
+  box-shadow: none !important;
+}
+
+.searchbr{
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('../image/search.png');
+  background-position: 10px 5px;
+  background-size: 15px 15px;
+  padding-left: 4.5vh;
+  background-repeat: no-repeat;
+  margin: 10px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+p,label{
+  font-family: ProximaLight;
+
+}
+
+.frm{
+   height:100%;
+   position:relative;
+   display:inline-block;
+   overflow:hidden;
+}
+
+.ic{
+  background: #86d528;
+  padding: 0px 30px;
+}
+.homedes{
+  position: absolute;
+  top:0;
+  background-color: rgba(255,255,255,0.5);
+}
+.vertical-align{
+
+  justify-content: center;
+   align-items: center;
+   display: flex;
+ }
+.bghome{
+  background: black;
+  background-image: url('../image/home.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: repeat-y;
+  height: 100%;
+}
+.srcb{
+  float:left;
+  clear:left;
+}
+.bgAwal{
+  background: black;
+  background-image: url('../image/awal.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  overflow: auto;
+}
+.bggvs{
+  background: black;
+  background-image: url('../image/goodvibes.jpg');
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+
+  overflow: auto;
+}
+.bgpop{
+  background: black;
+  background-image: url('../image/popular.jpg');
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  overflow: auto;
+}
+.bgprc:hover,.bgpop:hover,.bgmd:hover,.bggvs:hover{
+  transform: scale(1.05);
+  transition: 0.5s;
+
+}
+
+
+
+.bgprc{
+  background: black;
+  background-image: url('../image/price.jpg');
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  overflow: auto;
+}
+.bgmd{
+  background: black;
+  background-image: url('../image/mood.jpg');
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  overflow: auto;
+}
+.searchbr:focus{
+  width:30%;
+}
+
+.listo{
+  list-style: none;
+}
+
+#formFront{
+  margin-bottom: 50px;
+}
+#tesbtnbawah{
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .searchbr {
+    display: none;
+  }
+  nav{
+    display: none;
+  }
+  #slogan{
+    display:none;
+  }
+  #isifrontform{
+    width: 70%;
+  }
+  #tesbtnbawah{
+    display: block;
+  }
+}

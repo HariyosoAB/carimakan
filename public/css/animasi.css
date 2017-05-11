@@ -1,0 +1,45 @@
+
+/*.ng-enter 	{ z-index:8888;
+              -webkit-animation:fadeIn 0.5s both ease-in;
+            -moz-animation:fadeIn 0.5s both ease-in;
+            animation:fadeIn 0.5s both ease-in;
+            }*/
+@keyframes fadeIn {
+	from 		{ opacity: 0.3;}
+}
+@keyframes fadeOut {
+	to 		{ opacity: 0.3;}
+}
+/* when hiding the picture */
+/*.ng-hide-add         { animation:0.5s lightSpeedOut ease; }*/
+
+/* when showing the picture */
+
+.left.ng-hide-remove         { animation:1s slideInRight ease; }
+.right.ng-hide-remove {animation:1s slideInLeft ease; }
+#stripe{
+  height: 2px;
+  background: white;
+  -webkit-animation: manjang 1s;
+  -webkit-animation-delay: 0.5s;
+  animation: manjang 1s;
+  animation-delay: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+  width: 0%;
+}
+
+@-webkit-keyframes manjang {
+    from {width: 0%;}
+    to {width: 100%;}
+}
+
+@keyframes manjang {
+  from {width: 0%;}
+  to {width: 100%;}
+}
+@keyframes onoan {
+  from {
+        width: 50%;
+        opacity: 50%;
+    }
+}
