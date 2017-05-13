@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return View::make('index');
 });
+
+Route::group(array('prefix' => 'api'), function(){
+  Route::post('signup','UserController@register');
+});

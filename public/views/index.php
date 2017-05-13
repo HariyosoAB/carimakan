@@ -42,15 +42,18 @@
     <link href="plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
     <link href="css/animasi.css" rel="stylesheet" type="text/css" />
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
-    <link href="plugins/angular-carousel/dist/angular-carousel.min.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="css/carimakan.css">
+    <link href="plugins/angular-carousel/dist/angular-carousel.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/angular-bootstrap/ui-bootstrap-custom-2.5.0-csp.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/ngSweetAlert/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/sweetalert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
 
     <title>Carimakan.</title>
   </head>
   <body>
-    <header class="main-header" style="background-color: #86d528;">
+    <header id="header" class="main-header" style="background-color: #86d528;">
         <a href="#!/categories" class="logo">
           <span class="logo-mini">C</span>
           <span class="logo-lg proximaBold" style="color: white; font-size: 135%;">Carimakan.</span>
@@ -106,12 +109,21 @@
         </div>
     </footer>
   </body>
+  <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script> <!-- load angular -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-animate.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-touch.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-touch.js"></script>
+  <script src="plugins/angular-carousel/dist/angular-carousel.js"></script>
+  <script src="plugins/angular-bootstrap/ui-bootstrap-custom-tpls-2.5.0.js"></script>
+  <script src="plugins/sweetalert/sweetalert2.min.js"></script>
+  <script src="plugins/ngSweetAlert/ngSweetAlert2.js"></script>
+  <script type="text/javascript">
+      var ngSweetAlert2 = window.ngSweetAlert2;
+  </script>
+
   <script src="js/script.js"></script>
   <script src="js/controller/mainCtrl.js"></script>
-  <script src="plugins/angular-carousel/dist/angular-carousel.min.js"></script>
+  <script src="js/service/userService.js"></script>
 
 </html>

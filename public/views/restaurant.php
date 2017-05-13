@@ -1,10 +1,49 @@
+
+<style>
+            /*ul {
+                height:300px;
+                width: 600px;
+                background:blue;
+            }*/
+            #karusel{
+              height:100%;
+              width: 100%;
+            }
+            img.alignLeft {
+                float: left;
+            }
+        </style>
+
 <div class="container-fluid" style=" padding:20px 10px;background-color:#ededed;min-height:768px;" >
   <div class="col-md-12">
       <div class="col-md-8">
-        <div class="thumbnail" style="border:none;box-shadow:none;">
-          <img src="image/goodvibes.jpg" alt=""></li>
+          <!-- <ul rn-carousel rn-carousel-auto-slide rn-carousel-transition="slide" class="image" id="karusel">
 
-        </div>
+            <li>
+              <div class="thumbnail" style="border:none;box-shadow:none;">
+                <img src="image/goodvibes.jpg" alt="">
+              </div>
+            </li>
+            <li>
+              <div class="thumbnail" style="border:none;box-shadow:none;">
+                <img src="image/goodvibes.jpg" alt="">
+              </div>
+            </li>
+          </ul> -->
+          <div style="height: 100%;">
+             <div uib-carousel active="active" interval="3000" style="" >
+               <div uib-slide index="0">
+                 <div class="thumbnail vertical-align" style="border:none;box-shadow:none;background:black;min-height:30em;">
+                   <img src="image/goodvibes.jpg" alt="" style="max-height:30em;max-width:100%;">
+                 </div>
+               </div>
+               <div uib-slide index="1">
+                 <div class="thumbnail vertical-align" style="border:none;box-shadow:none;background:black;min-height:30em;">
+                   <img src="image/price.jpg" alt="" style="max-height:30em;max-width:100%;">
+                 </div>
+               </div>
+             </div>
+           </div>
       </div>
       <div class="col-md-4">
           <div class="box">
@@ -66,14 +105,37 @@
           </div>
 
           <div class="box">
-              <div class="box-header">
-                  <h2 class="proximaLight">Write a comment</h2>
+              <div class="box-header with-border">
+                  <h2 class="proximaBold">Write a Review</h2>
               </div>
-              <div class="box-body">
+              <div class="box-body" style="font-family:ProximaLight;">
                 <form class="form" action="index.html" method="post">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <h4>Food</h4>
+                      <span uib-rating ng-model="rate" max="5" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                    </div>
+                    <div class="form-group">
+                      <h4>Service</h4>
+                      <span uib-rating ng-model="rate2" max="5" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <h4>Price</h4>
+                      <span uib-rating ng-model="rate3" max="5" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                    </div>
+                    <div class="form-group">
+                      <h4>Place</h4>
+                      <span uib-rating ng-model="rate4" max="5" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                    </div>
+
+                  </div>
+
                     <div class="form-group">
                         <textarea class="form-control" name="" value=""></textarea>
                     </div>
+
                     <div class="btn btn-default" ng-click="search()">
                         Submit
                     </div>
@@ -82,19 +144,44 @@
           </div>
 
           <div ng-hide="loading">
-              
-            <div class="box" style="padding:20px;">
+
+            <div class="box" style="padding:10px;">
                 <div class="box-header" style="border-bottom:thin solid grey">
 
-                    <div class="thumbnail col-md-3" style="border-radius:50%;width:100px;height:100px;">
-                        <img src="image/food1.jpg" alt="" style="border-radius:50%; height:100%; width:100%;">
+                    <div class="thumbnail col-md-3" style="width:75px;height:75px;margin:0px;">
+                        <img src="image/food1.jpg" alt="" style="height:100%; width:100%;">
                     </div>
-                    <h2 class="proximaLight col-md-9" style="margin-top:40px;" >Ario Bimo</h2>
+                    <div class="col-md-9" style="margin:10px; margin-bottom:0px;">
+                      <div class="row">
+                        <h3 class="proximaLight" style="margin:0px;">Ario Bimo</h3>
+                      </div>
+                      <div class="row">
+                        <p class="proximaLight"style="margin:0px;">Location: Jakarta</p>
+                      </div>
+                      <div class="row">
+                        <p class="proximaLight">Reviews written: 33</p>
+                      </div>
+
+
+
+                    </div>
+
                 </div>
                 <div class="box-body">
-                    <div class="proximaLight">
-                      <p>Saya Suka makan disini</p>
+                    <div class="proximaLight col-md-9 col-xs-12">
+                      <p>Ada banyak variasi tulisan Lorem Ipsum yang tersedia, tapi kebanyakan sudah mengalami perubahan bentuk, entah karena unsur humor atau kalimat yang diacak hingga nampak sangat tidak masuk akal. Jika anda ingin menggunakan tulisan Lorem Ipsum, anda harus yakin tidak ada bagian yang memalukan yang tersembunyi di tengah naskah tersebut. Semua generator Lorem Ipsum di internet cenderung untuk mengulang bagian-bagian tertentu. Karena itu inilah generator pertama yang sebenarnya di internet. Ia menggunakan kamus perbendaharaan yang terdiri dari 200 kata Latin, yang digabung dengan banyak contoh struktur kalimat untuk menghasilkan Lorem Ipsun yang nampak masuk akal. Karena itu Lorem Ipsun yang dihasilkan akan selalu bebas dari pengulangan, unsur humor yang sengaja dimasukkan, kata yang tidak sesuai dengan karakteristiknya dan lain sebagainya.
+
+</p>
+
+
                     </div>
+                    <div class="col-md-3 col-xs-12">
+                      <div class="pull-right ic text-center ">
+                          <h5 class="proximaBold" style="color:white;margin-bottom:0px;">Review Score</h5>
+                          <h3 class="proximaLight" style="color:white;display:block;margin-top:0px;">4.5</h2>
+                      </div>
+                    </div>
+
                 </div>
                 <div class="box-footer with-border">
                     <div class="proximaLight">
@@ -145,7 +232,7 @@
           <div ng-show="loading" class="text-center">
               <i class="fa fa-meh-o fa-5x fa-spin" style="margin:50px;"></i>
          </div>
-     
+
 
       </div>
       <div class="col-md-4">

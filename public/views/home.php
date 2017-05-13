@@ -37,7 +37,13 @@
               <div class="row vertical-align" style="background:#86d528;text-align:center;font-size:20px;">
                 <div style="margin:10px;">
                   <p class="proximaLight" style="color: white; margin-right:10px;">Not a member? </p>
-                  <p class="proximaBold" style="color:white;display:block;"> Sign up</p>
+                    <a href="" style="text-decoration:none;">
+                      <p class="proximaBold" style="color:white;display:block;" ng-click="signUp()">
+
+                      Sign up
+                        </p>
+                    </a>
+
                 </div>
 
               </div>

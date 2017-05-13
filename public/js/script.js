@@ -1,4 +1,6 @@
-var carimakan = angular.module('carimakanApp',['mainCtrl','ngRoute','ngAnimate','ngTouch','angular-carousel']);
+var carimakan = angular.module('carimakanApp',['mainCtrl','ngRoute','ngAnimate','ngTouch','angular-carousel','ui.bootstrap','angular-sweetalert']);
+
+
 carimakan.config(function($routeProvider){
   $routeProvider
   .when('/',{
