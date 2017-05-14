@@ -3,18 +3,15 @@ var mainctrl = angular.module('mainCtrl',['userService']);
 mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal','Users',function($scope,$location,$anchorScroll,swal,Users){
   $anchorScroll();
   $scope.loading = true;
-  $scope.pageClass ="";
   $scope.userData={};
-
   $scope.signUp = function(){
     swal({
       title: 'Sign Up',
       html: '<form ng-submit="submitSignUp()" method="post" class="proximaLight">'+
-       '<div class="form-group" style="margin:10px 0px;"><label class="pull-left">Username :</label><input type="text" name="sgusernm" ng-model="userData.username"class="form-control" required></input></div> '+
-       '<div class="form-group" style="margin:10px 0px;"><label class="pull-left">Password :</label><input type="password" name="sgpasswd" ng-model="userData.password" class="form-control" required></input></div>'+
-       '<div class="form-group" style="margin:10px 0px;"><label class="pull-left">Location :</label><select type="text" name="loc" class="form-control" ng-model="userData.location" required><option value="-"></option><option value="Banten">Banten</option><option value="Jakarta">Jakarta</option><option value="JawaBarat">Jawa Barat</option><option value="JawaTimur">Jawa Timur</option><option value="DIY">DIY</option><option value="JawaTengah">Jawa Tengah</option><option value="Other">Other</option></select></div>'+
-       '<div class="form-group" style="margin:10px 0px;"><label class="pull-left">Email :</label><input type="email" name="Email" class="form-control" ng-model="userData.email" required></input></div>'+
-       '<div class="form-group" style="margin:10px 0px;"><label for="exampleInputFile" class="pull-left">Display Picture : </label><input type="file" name="avatar" ng-model="userData.username"></div>'+
+       '<div class="form-group" style="margin:10px 0px;"><label class="pull-left">Username :</label><input id="usrnm" type="text" name="sgusernm" ng-model="userData.username"class="form-control" required></input></div> '+
+       '<div class="form-group" style="margin:10px 0px;"><label class="pull-left">Password :</label><input id="pass" type="password" name="sgpasswd" ng-model="userData.password" class="form-control" required></input></div>'+
+       '<div class="form-group" style="margin:10px 0px;"><label class="pull-left">Location :</label><select id="location" type="text" name="loc" class="form-control" ng-model="userData.location" required><option value="-"></option><option value="Banten">Banten</option><option value="Jakarta">Jakarta</option><option value="JawaBarat">Jawa Barat</option><option value="JawaTimur">Jawa Timur</option><option value="DIY">DIY</option><option value="JawaTengah">Jawa Tengah</option><option value="Other">Other</option></select></div>'+
+       '<div class="form-group" style="margin:10px 0px;"><label class="pull-left">Email :</label><input id="email" type="email" name="Email" class="form-control" ng-model="userData.email" required></input></div>'+
        '</form>',
        showCloseButton: true,
        showCancelButton: true,
@@ -24,16 +21,25 @@ mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal
          '<i class="fa fa-thumbs-down"></i> Cancel'
     }).then(
       function(isConfirm){
+        var username = document.getElementById("usrnm").value;
+        var password = document.getElementById("pass").value;
+        var email = document.getElementById("email").value;
+        var location = document.getElementById("location").value;
+
+        $scope.userData = {'username':username,'password':password,'email':email,'location':location};
+        console.log($scope.userData);
         Users.save($scope.userData).then(function(){
                   swal(
                 'Register Success',
                 'You have created an account',
                 'success'
-            );
+            ).then(function(){
+                $location.url('/categories');
+            });
         },function(){
                     swal(
                   'Oops...',
-                  'Something went wrong!',
+                  'Username is Already Taken',
                   'error'
               );
         });

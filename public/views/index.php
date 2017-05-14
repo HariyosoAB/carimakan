@@ -123,6 +123,14 @@
   </script>
 
   <script src="js/script.js"></script>
+  <script type="text/javascript">
+      console.log(<?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?> );
+      carimakan.constant("CSRF_TOKEN", <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?> );
+  </script>
   <script src="js/controller/mainCtrl.js"></script>
   <script src="js/service/userService.js"></script>
 

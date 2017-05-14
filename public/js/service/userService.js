@@ -1,10 +1,11 @@
-angular.module('userService',[]).factory('Users',function($http){
+angular.module('userService',[]).factory('Users',function($http,CSRF_TOKEN){
   return{
     get: function(id){
       return $http.get('api/profile'+id);
     },
     save: function(userData){
-      //console.log("tesm");
+//      console.log(CSRF_TOKEN["csrfToken"]);
+      console.log(userData);
       return $http({
         method: 'POST',
         url: 'api/signup',

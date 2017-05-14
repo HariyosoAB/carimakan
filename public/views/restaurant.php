@@ -230,7 +230,8 @@
 
           </div>
           <div ng-show="loading" class="text-center">
-              <i class="fa fa-meh-o fa-5x fa-spin" style="margin:50px;"></i>
+              <img src="image/fluid-loader.gif" alt="" style="margin:50px;height:100px;">
+              <!-- <i class="fa fa-meh-o fa-5x fa-spin" style="margin:50px;"></i> -->
          </div>
 
 

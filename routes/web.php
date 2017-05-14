@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return View::make('index');
 });
+Route::get('/debug', function () {
+    return View::make('debug');
+});
 
 Route::group(array('prefix' => 'api'), function(){
   Route::post('signup','UserController@register');

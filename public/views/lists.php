@@ -410,7 +410,7 @@
         </div>
       </div>
       <div class="col-md-12">
-        <p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
+        <p class="text-center" ng-show="loading"><img src="image/fluid-loader.gif" alt="" style="margin:50px;height:100px;"></p>
       </div>
 
     </div>
