@@ -14,28 +14,22 @@ class userseeder extends Seeder
     {
     	DB::table('user')->insert([
     		[
-    				'Username' => 'faishal_ilham',
-    				'Location' => 'Surabaya',
+    				'Username' => 'FaishalIlham',
+    				'Location' => 'Banten',
     				'Display_Picture' => 'default.jpg',
     				'Email' => 'faishal15@gmail.com',
     		],
     		[
-    				'Username' => 'dwikasm',
-    				'Location' => 'Surabaya',
-    				'Display_Picture' => 'default.jpg',
-    				'Email' => 'dwika@gmail.com',
-    		],
-    		[
-    				'Username' => 'hariyosoab',
+    				'Username' => 'ArioBimo',
     				'Location' => 'Jakarta',
     				'Display_Picture' => 'default.jpg',
-    				'Email' => 'masgondi@gmail.com',
+    				'Email' => 'ariobimo@gmail.com',
     		],
     		[
-    				'Username' => 'elvacious',
+    				'Username' => 'DwikaSM',
     				'Location' => 'Surabaya',
     				'Display_Picture' => 'default.jpg',
-    				'Email' => 'elvalicious@gmail.com',
+    				'Email' => 'dwikasm@gmail.com',
     		],
     	]);
         //
