@@ -26,7 +26,7 @@ class pictureseeder extends Seeder
     				'Picture_Filename' => '8.jpg',
     		],
     		[
-    				'Picture_Resto' => 6,
+    				'Picture_Resto' => 3,
     				'Picture_Filename' => '3.jpg',
     		],
     		[
@@ -42,7 +42,7 @@ class pictureseeder extends Seeder
     				'Picture_Filename' => '6.jpg',
     		],
     		[
-    				'Picture_Resto' => 10,
+    				'Picture_Resto' => 1,
     				'Picture_Filename' => '7.jpg',
     		],
 
