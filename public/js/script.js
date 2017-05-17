@@ -12,7 +12,7 @@ carimakan.config(function($routeProvider){
   })
   .when('/categories',{
     templateUrl : 'views/pageAwal.php',
-    controller: 'mainController'
+    controller: 'categoriesController'
   })
   .when('/lists',{
     templateUrl : 'views/lists.php',

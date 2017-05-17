@@ -1,4 +1,4 @@
-var mainctrl = angular.module('mainCtrl',['userService']);
+var mainctrl = angular.module('mainCtrl',['userService','queryService']);
 
 mainctrl.controller('sidebarController',['$scope','swal','$location','Users',function($scope,swal,$location,Users){
   $scope.closed={};
@@ -81,8 +81,11 @@ mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal
   $scope.loginData={};
 
   Users.logData().then(function(data){
+    console.log(data);
+
     if(data != null && data!= undefined){
-      $scope.Auth.data = data.data.Login_User;
+      $scope.Auth.data = data.data.user.Login_User;
+      $scope.Auth.picture = data.data.userdet.Display_Picture;
     }
     else {
       console.log("null");
@@ -106,13 +109,53 @@ mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal
 
 }]);
 
+mainctrl.controller('categoriesController',['$scope','$location','$anchorScroll','swal','Users','Query',function($scope,$location,$anchorScroll,swal,Users,Query){
+  $scope.closed.sidebar = true;
+  $anchorScroll();
+  $scope.loading = true;
+  $scope.userData={};
+  $scope.loginData={};
+  Users.logData().then(function(data){
+    console.log(data);
+
+    if(data != null && data!= undefined){
+      $scope.Auth.data = data.data.user.Login_User;
+      $scope.Auth.picture = data.data.userdet.Display_Picture;
+    }
+    else {
+      console.log("null");
+    }
+  });
+  Query.getFeatured().then(function(data){
+    console.log(data.data.featured);
+
+    if(data != null && data!= undefined){
+      $scope.featuredData = data.data.featured;
+      for (i = 0; i < $scope.featuredData.length; i++) {
+          $scope.featuredData[i].rating = (parseFloat($scope.featuredData[i].average_food) + parseFloat($scope.featuredData[i].average_price) + parseFloat($scope.featuredData[i].average_place) + parseFloat($scope.featuredData[i].average_service))/4;
+          console.log($scope.featuredData[i].rating)
+
+      }
+    }
+    else {
+      console.log("null");
+    }
+  });
+
+
+
+}]);
+
 
 mainctrl.controller('listController',['$scope','$location','$anchorScroll','Users',function($scope,$location,$anchorScroll,Users){
   $anchorScroll();
 
   Users.logData().then(function(data){
+    console.log(data);
+
     if(data != null && data!= undefined){
-      $scope.Auth.data = data.data.Login_User;
+      $scope.Auth.data = data.data.user.Login_User;
+      $scope.Auth.picture = data.data.userdet.Display_Picture;
     }
     else {
       console.log("null");

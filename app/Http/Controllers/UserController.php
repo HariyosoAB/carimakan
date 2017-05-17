@@ -43,7 +43,11 @@ class UserController extends Controller
    }
    public function logdata(){
      if(Auth::check()){
-       return Response::json(Auth::user());
+       $id = Auth::user()->Login_User;
+       $data['userdet']=UserModel::find($id);
+       $data['user'] = Auth::user();
+
+       return Response::json($data);
      }
      else {
        return null;
@@ -56,7 +60,7 @@ class UserController extends Controller
    }
    public function ApiCall(Request $request){
      $BASE_URL = "http://query.yahooapis.com/v1/public/yql";
-     $yql_query = 'select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text="Surabaya")';
+     $yql_query = 'select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text="Irian Jaya")';
      $yql_query_url = $BASE_URL . "?q=" . urlencode($yql_query) . "&format=json";
      // Make call with cURL
      $session = curl_init($yql_query_url);

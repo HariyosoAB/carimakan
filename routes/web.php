@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/sets','UserController@coba');
+Route::get('/sets','UserController@ApiCall');
 
 Route::get('/s',function(){
   echo Auth::user();
@@ -29,5 +29,8 @@ Route::group(array('prefix' => 'api'), function(){
   Route::post('login','UserController@login');
   Route::get('logs','UserController@logdata');
   Route::get('logout','UserController@logout');
+
+  Route::get('getFeatured','restoController@getFeatured');
+
 
 });
