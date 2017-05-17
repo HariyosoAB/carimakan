@@ -15,6 +15,20 @@ angular.module('userService',[]).factory('Users',function($http,CSRF_TOKEN){
     },
     destroy:function(id){
       return $http.delete('api/deleteAcc'+id);
+    },
+    login:function(loginData){
+      return $http({
+        method: 'POST',
+        url: 'api/login',
+        headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+        data: $.param(loginData)
+      });
+    },
+    logData: function(){
+      return $http.get('api/logs');
+    },
+    logOut: function(){
+      return $http.get('api/logout');
     }
   }
 

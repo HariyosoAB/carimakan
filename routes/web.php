@@ -11,6 +11,12 @@
 |
 */
 
+Route::get('/sets','UserController@coba');
+
+Route::get('/s',function(){
+  echo Auth::user();
+});
+
 Route::get('/', function () {
     return View::make('index');
 });
@@ -20,4 +26,8 @@ Route::get('/debug', function () {
 
 Route::group(array('prefix' => 'api'), function(){
   Route::post('signup','UserController@register');
+  Route::post('login','UserController@login');
+  Route::get('logs','UserController@logdata');
+  Route::get('logout','UserController@logout');
+
 });

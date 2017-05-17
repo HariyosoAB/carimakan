@@ -1,9 +1,11 @@
 var mainctrl = angular.module('mainCtrl',['userService']);
 
-mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal','Users',function($scope,$location,$anchorScroll,swal,Users){
-  $anchorScroll();
-  $scope.loading = true;
-  $scope.userData={};
+mainctrl.controller('sidebarController',['$scope','swal','$location','Users',function($scope,swal,$location,Users){
+  $scope.closed={};
+  $scope.closed.sidebar = true;
+  $scope.Auth = {};
+  $scope.Auth.data =null;
+
   $scope.signUp = function(){
     swal({
       title: 'Sign Up',
@@ -34,6 +36,7 @@ mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal
                 'You have created an account',
                 'success'
             ).then(function(){
+                Users.login($scope.userData);
                 $location.url('/categories');
             });
         },function(){
@@ -47,11 +50,74 @@ mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal
   };
 
 
+
+
+
+
+  $scope.toggleSidebar = function(){
+    $scope.closed.sidebar= !$scope.closed.sidebar;
+  }
+  $scope.logout = function(){
+    Users.logOut().then(function(){
+      swal(
+          'Logged Out',
+          'You have logged out',
+          'info'
+      );
+      $scope.Auth.data = null;
+      $location.url('/');
+
+    });
+  }
+
 }]);
 
 
-mainctrl.controller('listController',['$scope','$location','$anchorScroll',function($scope,$location,$anchorScroll){
+mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal','Users',function($scope,$location,$anchorScroll,swal,Users){
+  $scope.closed.sidebar = true;
   $anchorScroll();
+  $scope.loading = true;
+  $scope.userData={};
+  $scope.loginData={};
+
+  Users.logData().then(function(data){
+    if(data != null && data!= undefined){
+      $scope.Auth.data = data.data.Login_User;
+    }
+    else {
+      console.log("null");
+    }
+  });
+
+  $scope.submitLogin= function(){
+    Users.login($scope.loginData).then(function(){
+          swal(
+        'Login Success',
+        'You successfully logged in',
+        'success');
+        $location.url('/categories');
+    },function(){
+      swal(
+    'Login failed',
+    'Username or Password did not match any records',
+    'error');
+    });
+  };
+
+}]);
+
+
+mainctrl.controller('listController',['$scope','$location','$anchorScroll','Users',function($scope,$location,$anchorScroll,Users){
+  $anchorScroll();
+
+  Users.logData().then(function(data){
+    if(data != null && data!= undefined){
+      $scope.Auth.data = data.data.Login_User;
+    }
+    else {
+      console.log("null");
+    }
+  });
 
   $scope.loading = true;
   $scope.pageClass = "list";

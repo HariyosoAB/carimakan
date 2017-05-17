@@ -15,6 +15,13 @@
 
 /* when showing the picture */
 
+.sidebar-cr.ng-hide-add         { animation:1s slideOutLeft ease; }
+.sidebar-cr.ng-hide-remove {animation:1s slideInLeft ease; }
+
+
+
+
+
 .left.ng-hide-remove         { animation:1s slideInRight ease; }
 .right.ng-hide-remove {animation:1s slideInLeft ease; }
 #stripe{

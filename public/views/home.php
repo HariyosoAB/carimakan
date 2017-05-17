@@ -20,14 +20,14 @@
                    <h1 class="proximaBold" style="color: #86d528;font-size:60px; background:white;">Login</h1>
               </div>
               <div class="row" style="background:white;" >
-                  <form class="" action="#!/categories" method="GET" style="padding: 20px">
+                  <form ng-submit="submitLogin()" method="POST" style="padding: 20px">
                     <div class="form-group">
                       <p class="proximaLight" style="color:grey;font-size:20px;">Username</p>
-                    <input type="text" class="form-control proximaLight" id="usr" placeholder="Username" required>
+                    <input type="text" class="form-control proximaLight" id="usr" placeholder="Username" ng-model="loginData.username" required>
                     </div>
                     <div class="form-group">
                     <p class="proximaLight" style="color:grey; font-size:20px;">Password</p>
-                    <input type="password" class="form-control proximaLight" id="pwd" placeholder="Password" required>
+                    <input type="password" class="form-control proximaLight" id="pwd" placeholder="Password" ng-model="loginData.password" required>
                     </div>
                     <div class="text-right">
                       <button type="submit" class="btn btn-lg" id="btnAnm" style="background:#86d528; color:white;">Login</button>

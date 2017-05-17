@@ -1,6 +1,9 @@
 var carimakan = angular.module('carimakanApp',['mainCtrl','ngRoute','ngAnimate','ngTouch','angular-carousel','ui.bootstrap','angular-sweetalert']);
 
 
+carimakan.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
 carimakan.config(function($routeProvider){
   $routeProvider
   .when('/',{

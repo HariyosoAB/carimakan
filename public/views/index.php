@@ -52,21 +52,81 @@
 
     <title>Carimakan.</title>
   </head>
-  <body>
-    <header id="header" class="main-header" style="background-color: #86d528;">
+  <body ng-app="carimakanApp" ng-controller="sidebarController">
+    <div class="sidebar-cr proximaLight" ng-hide="closed.sidebar" style="background-color:white;color:grey;text-decoration:none;">
+
+      <div ng-show="Auth.data">
+        <ul class="sidebar-menu proximaBold">
+          <div style="background-color:#434343;width:20vw;">
+            <li class="header" style="color:white">USER PANEL</li>
+          </div>
+        </ul>
+
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p>{{Auth.data}}</p>
+            <a href="#"><i class="fa fa-circle text-success" style="color:grey"></i> Online</a>
+          </div>
+        </div>
+      </div>
+
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+          <div style="background-color:#434343;width:20vw;">
+            <li class="header proximaBold" style="color:white">MAIN NAVIGATION</li>
+          </div>
+
+          <li class="treeview">
+            <a href="#!/" style="color:grey">
+              <i class="fa fa-dashboard"></i> <span ng-show="Auth.data">Homepage</span> <span ng-show="!Auth.data">Login</span>
+            </a>
+          </li>
+          <li>
+            <a href="#!/categories" style="color:grey">
+              <i class="fa fa-files-o"></i>
+              <span>Categories</span>
+            </a>
+        </li>
+        <li ng-show="Auth.data">
+          <a role="button"ng-click="logout()" style="color:grey">
+            <i class="fa fa-sign-out"></i>
+            <span>Logout</span>
+          </a>
+      </li>
+        <li ng-hide="Auth.data">
+          <a style="color:grey" role="button" ng-click="signUp()">
+            <i class="fa fa-gear"></i>
+            <span>Sign Up</span>
+          </a>
+        </li>
+        <span class="fa fa-2x fa-arrow-circle-left pull-right" style="margin-right:10px; color:grey" role="button" ng-click="toggleSidebar()"></span>
+
+      </ul>
+    </div>
+    <header id="header" class="main-header" style="background-color: #86d528;z-index:10000;">
         <a href="#!/categories" class="logo">
           <span class="logo-mini">C</span>
           <span class="logo-lg proximaBold" style="color: white; font-size: 135%;">Carimakan.</span>
         </a>
         <nav class="navbar navbar-static-top">
+          <div style="text-decoration:none;color:white;" >
+            <a class="sidebar-toggle" role="button" style="text-decoration:none;color:white;" id="ham" ng-click="toggleSidebar();">
+              <span class="sr-only"style="color:white;">Toggle navigation</span>
+            </a>
+          </div>
+
         <form action="#!/lists" method="GET">
                       <input type="text" class="searchbr pull-right proximaLight" placeholder="Search">
         </form>
         </nav>
-    </header>
-    <section style="padding:0px;" ng-app="carimakanApp">
-              <div class="{{pageClass}}" ng-view></div>
 
+    </header>
+    <section style="padding:0px;" >
+              <div class="{{pageClass}}" ng-view></div>
     </section>
     <footer>
         <div class="col-sm-12" style="background:#434343;">

@@ -47,6 +47,20 @@ p,label{
   top:0;
   background-color: rgba(255,255,255,0.5);
 }
+#ham{
+  background-color:#86d528
+}
+#ham:hover{
+  background-color:#5DB200;
+}
+.sidebar-cr{
+  position:fixed;
+  width:20vw;
+  height:100vh;
+  background-color:white;
+  z-index:9999;
+  padding:3.5em 0em;
+}
 .vertical-align{
 
   justify-content: center;
