@@ -14,11 +14,11 @@ class pictureseeder extends Seeder
     {
         DB::table('picture')->insert([
     		[
-    				'Picture_Resto' => 3,
+    				'Picture_Resto' => 2,
     				'Picture_Filename' => '1.jpg',
     		],
     		[
-    				'Picture_Resto' => 3,
+    				'Picture_Resto' => 2,
     				'Picture_Filename' => '2.jpg',
     		],
     		[
@@ -26,15 +26,15 @@ class pictureseeder extends Seeder
     				'Picture_Filename' => '8.jpg',
     		],
     		[
-    				'Picture_Resto' => 5,
+    				'Picture_Resto' => 6,
     				'Picture_Filename' => '3.jpg',
     		],
     		[
-    				'Picture_Resto' => 5,
+    				'Picture_Resto' => 6,
     				'Picture_Filename' => '4.jpg',
     		],
     		[
-    				'Picture_Resto' => 5,
+    				'Picture_Resto' => 9,
     				'Picture_Filename' => '5.jpg',
     		],
     		[
@@ -42,7 +42,7 @@ class pictureseeder extends Seeder
     				'Picture_Filename' => '6.jpg',
     		],
     		[
-    				'Picture_Resto' => 7,
+    				'Picture_Resto' => 10,
     				'Picture_Filename' => '7.jpg',
     		],
 
