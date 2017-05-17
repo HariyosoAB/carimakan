@@ -15,35 +15,35 @@ class pictureseeder extends Seeder
         DB::table('picture')->insert([
     		[
     				'Picture_Resto' => 3,
-    				'Picture_Filename' => 1,
+    				'Picture_Filename' => '1.jpg',
     		],
     		[
     				'Picture_Resto' => 3,
-    				'Picture_Filename' => 2,
+    				'Picture_Filename' => '2.jpg',
     		],
     		[
     				'Picture_Resto' => 4,
-    				'Picture_Filename' => 8,
+    				'Picture_Filename' => '8.jpg',
     		],
     		[
     				'Picture_Resto' => 5,
-    				'Picture_Filename' => 3,
+    				'Picture_Filename' => '3.jpg',
     		],
     		[
     				'Picture_Resto' => 5,
-    				'Picture_Filename' => 4,
+    				'Picture_Filename' => '4.jpg',
     		],
     		[
     				'Picture_Resto' => 5,
-    				'Picture_Filename' => 5,
+    				'Picture_Filename' => '5.jpg',
     		],
     		[
     				'Picture_Resto' => 6,
-    				'Picture_Filename' => 6,
+    				'Picture_Filename' => '6.jpg',
     		],
     		[
     				'Picture_Resto' => 7,
-    				'Picture_Filename' => 7,
+    				'Picture_Filename' => '7.jpg',
     		],
 
     	]);
