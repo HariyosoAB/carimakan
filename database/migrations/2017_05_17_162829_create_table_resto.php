@@ -27,7 +27,7 @@ class CreateTableResto extends Migration
             $table->integer('Wifi');
             $table->integer('Reservation');
             $table->integer('Smoking_Area');
-            $table->integer('Free_Praking');
+            $table->integer('Free_Parking');
             
         });
     }
