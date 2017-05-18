@@ -53,6 +53,7 @@ mainctrl.controller('sidebarController',['$scope','swal','$location','Users',fun
 
 
 
+
   $scope.toggleSidebar = function(){
     $scope.closed.sidebar= !$scope.closed.sidebar;
   }
@@ -168,6 +169,7 @@ mainctrl.controller('moodController',['$scope','$location','$anchorScroll','swal
         }
         $scope.loading=false;
       },function(){
+
       });
 
     }
@@ -237,6 +239,7 @@ mainctrl.controller('detailController',['$scope','$location','$anchorScroll','sw
     $anchorScroll();
     $scope.loading = true;
     $scope.commload= false;
+
     var a;
     Users.logData().then(function(data){
 
@@ -244,6 +247,20 @@ mainctrl.controller('detailController',['$scope','$location','$anchorScroll','sw
         $scope.Auth.data = data.data.user.Login_User;
         $scope.Auth.picture = data.data.userdet.Display_Picture;
         a = $scope.Auth.data;
+      }
+      else {
+        console.log("null");
+      }
+    });
+
+    Query.getFeatured().then(function(data){
+
+      if(data != null && data!= undefined){
+        $scope.featuredData = data.data.featured;
+        for (i = 0; i < $scope.featuredData.length; i++) {
+            $scope.featuredData[i].rating = (parseFloat($scope.featuredData[i].average_food) + parseFloat($scope.featuredData[i].average_price) + parseFloat($scope.featuredData[i].average_place) + parseFloat($scope.featuredData[i].average_service))/4;
+
+        }
       }
       else {
         console.log("null");
@@ -297,19 +314,7 @@ mainctrl.controller('detailController',['$scope','$location','$anchorScroll','sw
          }
       }
 
-      Query.getFeatured().then(function(data){
 
-        if(data != null && data!= undefined){
-          $scope.featuredData = data.data.featured;
-          for (i = 0; i < $scope.featuredData.length; i++) {
-              $scope.featuredData[i].rating = (parseFloat($scope.featuredData[i].average_food) + parseFloat($scope.featuredData[i].average_price) + parseFloat($scope.featuredData[i].average_place) + parseFloat($scope.featuredData[i].average_service))/4;
-
-          }
-        }
-        else {
-          console.log("null");
-        }
-      });
 
 
 }]);

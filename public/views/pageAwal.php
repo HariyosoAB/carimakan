@@ -39,13 +39,13 @@
           </div>
         </a>
 
-          <a href="#!/lists"><div class="col-md-6 col-xs-12" style="height:10em;margin-top:10px;">
+          <a href="#!/lists" ng-show="Auth.data"><div class="col-md-6 col-xs-12" style="height:10em;margin-top:10px;">
               <div class="bgmd wrapper text-center vertical-align">
                 <h1 class="proximaBold" style="color:white;">Suits the Mood</h1>
               </div>
           </div>
         </a>
-        <a href="#!/price">
+        <a href="#!/price" ng-show="Auth.data">
           <div class="col-md-6 col-xs-12">
               <div class="bgprc wrapper text-center vertical-align" style="height:10em;margin-top:10px;">
                   <h1 class="proximaBold" style="color:white;">Good Price</h1>
