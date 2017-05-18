@@ -119,7 +119,7 @@
             </a>
           </div>
 
-        <form action="#!/lists" method="GET">
+        <form ng-submit="search()" method="GET">
                       <input type="text" class="searchbr pull-right proximaLight" placeholder="Search">
         </form>
         </nav>

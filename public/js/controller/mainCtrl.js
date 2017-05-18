@@ -128,6 +128,7 @@ mainctrl.controller('categoriesController',['$scope','$location','$anchorScroll'
       $scope.featuredData = data.data.featured;
       for (i = 0; i < $scope.featuredData.length; i++) {
           $scope.featuredData[i].rating = (parseFloat($scope.featuredData[i].average_food) + parseFloat($scope.featuredData[i].average_price) + parseFloat($scope.featuredData[i].average_place) + parseFloat($scope.featuredData[i].average_service))/4;
+          $scope.featuredData[i].rating  = Math.round($scope.featuredData[i].rating*100)/100;
 
       }
     }
@@ -259,6 +260,7 @@ mainctrl.controller('detailController',['$scope','$location','$anchorScroll','sw
         $scope.featuredData = data.data.featured;
         for (i = 0; i < $scope.featuredData.length; i++) {
             $scope.featuredData[i].rating = (parseFloat($scope.featuredData[i].average_food) + parseFloat($scope.featuredData[i].average_price) + parseFloat($scope.featuredData[i].average_place) + parseFloat($scope.featuredData[i].average_service))/4;
+            $scope.featuredData[i].rating  = Math.round($scope.featuredData[i].rating*100)/100;
 
         }
       }
