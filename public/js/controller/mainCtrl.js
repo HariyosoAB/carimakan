@@ -29,7 +29,6 @@ mainctrl.controller('sidebarController',['$scope','swal','$location','Users',fun
         var location = document.getElementById("location").value;
 
         $scope.userData = {'username':username,'password':password,'email':email,'location':location};
-        console.log($scope.userData);
         Users.save($scope.userData).then(function(){
                   swal(
                 'Register Success',
@@ -81,7 +80,6 @@ mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal
   $scope.loginData={};
 
   Users.logData().then(function(data){
-    console.log(data);
 
     if(data != null && data!= undefined){
       $scope.Auth.data = data.data.user.Login_User;
@@ -116,7 +114,6 @@ mainctrl.controller('categoriesController',['$scope','$location','$anchorScroll'
   $scope.userData={};
   $scope.loginData={};
   Users.logData().then(function(data){
-    console.log(data);
 
     if(data != null && data!= undefined){
       $scope.Auth.data = data.data.user.Login_User;
@@ -127,13 +124,11 @@ mainctrl.controller('categoriesController',['$scope','$location','$anchorScroll'
     }
   });
   Query.getFeatured().then(function(data){
-    console.log(data.data.featured);
 
     if(data != null && data!= undefined){
       $scope.featuredData = data.data.featured;
       for (i = 0; i < $scope.featuredData.length; i++) {
           $scope.featuredData[i].rating = (parseFloat($scope.featuredData[i].average_food) + parseFloat($scope.featuredData[i].average_price) + parseFloat($scope.featuredData[i].average_place) + parseFloat($scope.featuredData[i].average_service))/4;
-          console.log($scope.featuredData[i].rating)
 
       }
     }
@@ -143,6 +138,45 @@ mainctrl.controller('categoriesController',['$scope','$location','$anchorScroll'
   });
 
 
+
+}]);
+
+
+mainctrl.controller('moodController',['$scope','$location','$anchorScroll','swal','Users','Query',function($scope,$location,$anchorScroll,swal,Users,Query){
+  $scope.closed.sidebar = true;
+  $anchorScroll();
+  $scope.sess={};
+  $scope.mood = true;
+  $scope.loading =true;
+  var cit;
+  Users.logData().then(function(data){
+
+    if(data != null && data!= undefined){
+
+      $scope.Auth.data = data.data.user.Login_User;
+      $scope.Auth.picture = data.data.userdet.Display_Picture;
+      $scope.sess.city = data.data.userdet.Location;
+      cit = $scope.sess.city;
+
+      Query.getMood(cit).then(function(getMood){
+        console.log(getMood);
+        $scope.resto = getMood.data.query;
+        $scope.weather = getMood.data.weather;
+        if (getMood.data.type==1) {
+          $scope.type = "rainy.gif"
+        }
+        else {
+          $scope.type = "sunny.gif"
+        }
+        $scope.loading=false;
+      },function(){
+      });
+
+    }
+    else {
+      console.log("null");
+    }
+  });
 
 }]);
 
@@ -196,5 +230,37 @@ mainctrl.controller('listController',['$scope','$location','$anchorScroll','User
   };
 
 
+
+}]);
+
+mainctrl.controller('detailController',['$scope','$location','$anchorScroll','swal','Users','Query','$routeParams',function($scope,$location,$anchorScroll,swal,Users,Query,$routeParams){
+    $scope.restoID = $routeParams.id;
+    $scope.closed.sidebar = true;
+    $anchorScroll();
+    $scope.loading = true;
+
+
+    Users.logData().then(function(data){
+
+      if(data != null && data!= undefined){
+        $scope.Auth.data = data.data.user.Login_User;
+        $scope.Auth.picture = data.data.userdet.Display_Picture;
+      }
+      else {
+        console.log("null");
+      }
+    });
+
+    Query.getDetails($scope.restoID).then(function(detailsData){
+        $scope.info = detailsData.data.resto;
+        $scope.reviews = detailsData.data.reviews;
+        $scope.pictures = detailsData.data.pictures;
+
+        for (i = 0; i < $scope.reviews.length; i++) {
+            $scope.reviews[i].rating = (parseFloat(detailsData.data.reviews[i].Reviews_Price) + parseFloat(detailsData.data.reviews[i].Reviews_Food) + parseFloat(detailsData.data.reviews[i].Reviews_Place)  +parseFloat(detailsData.data.reviews[i].Reviews_Service) )/4;
+        }
+
+        $scope.loading = false;
+    });
 
 }]);

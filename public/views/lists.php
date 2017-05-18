@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="row ">
+    <div class="row " ng-show="mood">
       <div class="col-md-12">
           <div class="box" style="border:0;box-shadow: none; margin:0% 5%; padding:0px 50px" ng-hide="loading">
             <div class="box-header" style="border-bottom:thin solid grey">
@@ -34,13 +34,13 @@
             <div class="box-body text-center" style="padding:100px;">
                 <div class="col-md-12">
                     <div class="col-md-3">
-                      <img src="image/rainy.gif" alt="" style="max-height:200px;">
+                      <img src="image/{{type}}" alt="" style="max-height:200px;">
 
                     </div>
                     <div class="col-md-9">
-                      <h2 class="proximaLight">Location : Surabaya</h2>
-                      <br><h2 class="proximaLight">Temperature : <i class="proximaBold">28C</i></h2>
-                      <br><h2 class="proximaLight">Weather : <strong>Rainy</strong></h2>
+                      <h2 class="proximaLight">Location : {{sess.city}}</h2>
+                      <br><h2 class="proximaLight">Temperature : <i class="proximaBold">{{weather.temp}}F</i></h2>
+                      <br><h2 class="proximaLight">Weather : <strong>{{weather.text}}</strong></h2>
                     </div>
                 </div>
 
@@ -63,165 +63,33 @@
           <select class="form-control" name="">
               <option> Rating</option>
               <option> Price</option>
-
           </select>
         </div>
 
-        <div class="box-body right" ng-show="page2">
+        <div class="box-body right" >
 
-          <div class="row">
+          <div class="row" ng-repeat="rest in resto">
             <div class="col-md-3" >
               <div class="thumbnail" style="margin:10px;">
-                <img src="image/food1.jpg" alt="" style="max-height:165px;">
+                <img src="image/resto/{{rest.Picture_Filename}}" alt="" style="max-height:165px;">
               </div>
             </div>
             <div class="col-md-9">
               <div class="box box-success">
                 <div class="box-header" style="border-bottom: thin solid grey">
-                  <a href="#!/resto" style="color:inherit"><h2 class="proximaBold"  style="margin-top:0px;">Sego jamur</h2></a>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
+                  <a ng-href="#!/details/{{rest.ID_Resto}}" style="color:inherit"><h2 class="proximaBold"  style="margin-top:0px;">{{rest.Resto_Name}}</h2></a>
+                  <!-- <div class="pull-right text-center" style="background-color:#86d528;">
                     <h4 class="proximaBold" style=" color:white; margin:10px;">4.9</h4>
-                  </div>
-                  <br><label>Jakarta</label>
-                  <p>Jl. Tebet Timur Dalam Raya 44B, Tebet, Jakarta</p>
+                  </div> -->
+                  <br><label>{{rest.Resto_City}}</label>
+                  <p>{{rest.Resto_Location}}</p>
                 </div>
                 <div class="box-body proximaLight col-md-12">
                   <div class="col-md-6">
-
-                    <label >Price :</label> Rp 20000 - 100000 ,-
-                    <br><label >Open At :</label> 10.00 AM - 10.00 PM
+                    <label >Price :</label> Rp {{rest.Price_Min}} - {{rest.Price_Max}} ,-
                   </div>
                   <div class="col-md-6">
-                    <label>Type :</label> Lunch
-                    <br><label >Phone Number :</label> 08568859594
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="thumbnail" style="margin:10px;">
-                <img src="image/mood.jpg" alt="" style="max-height:165px;">
-              </div>
-            </div>
-            <div class="col-md-9">
-              <div class="box box-success">
-                <div class="box-header" style="border-bottom: thin solid grey">
-                  <h2 class="proximaBold"  style="margin-top:0px;">Rumah Sosis</h2>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.7</h4>
-                  </div>
-                  <br><label>Bogor Utara</label>
-                  <p>Jl. Raya Pajajaran No. 21, Bogor Utara, Bogor</p>
-                </div>
-                <div class="box-body proximaLight col-md-12">
-                  <div class="col-md-6">
-
-                    <label >Price :</label> Rp 25000 - 75000 ,-
-                    <br><label >Open At :</label>09.00 AM - 11.00 PM
-                  </div>
-                  <div class="col-md-6">
-                    <label>Type :</label> Dinner
-                    <br><label >Phone Number :</label> 08128393918
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="thumbnail" style="margin:10px;">
-                <img src="image/food1.jpg" alt="" style="max-height:165px;">
-              </div>
-            </div>
-            <div class="col-md-9">
-              <div class="box box-success">
-                <div class="box-header" style="border-bottom: thin solid grey">
-                <a href="#!/resto" style="color:inherit">  <h2 class="proximaBold"  style="margin-top:0px;">Lucky cat cafe</h2></a>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.9</h4>
-                  </div>
-                  <br><label>Jakarta</label>
-                  <p>Jl. Tebet Timur Dalam Raya 44B, Tebet, Jakarta</p>
-                </div>
-                <div class="box-body proximaLight col-md-12">
-                  <div class="col-md-6">
-
-                    <label >Price :</label> Rp 20000 - 100000 ,-
-                    <br><label >Open At :</label> 10.00 AM - 10.00 PM
-                  </div>
-                  <div class="col-md-6">
-                    <label>Type :</label> Lunch
-                    <br><label >Phone Number :</label> 08568859594
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="thumbnail" style="margin:10px;">
-                <img src="image/mood.jpg" alt="" style="max-height:165px;">
-              </div>
-            </div>
-            <div class="col-md-9">
-              <div class="box box-success">
-                <div class="box-header" style="border-bottom: thin solid grey">
-                  <a href="#!/resto" style="color:inherit"><h2 class="proximaBold"  style="margin-top:0px;">Lemongrass</h2></a>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.7</h4>
-                  </div>
-                  <br><label>Bogor Utara</label>
-                  <p>Jl. Raya Pajajaran No. 21, Bogor Utara, Bogor</p>
-                </div>
-                <div class="box-body proximaLight col-md-12">
-                  <div class="col-md-6">
-
-                    <label >Price :</label> Rp 25000 - 75000 ,-
-                    <br><label >Open At :</label>09.00 AM - 11.00 PM
-                  </div>
-                  <div class="col-md-6">
-                    <label>Type :</label> Dinner
-                    <br><label >Phone Number :</label> 08128393918
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="thumbnail" style="margin:10px;">
-                <img src="image/mood.jpg" alt="" style="max-height:165px;">
-              </div>
-            </div>
-            <div class="col-md-9">
-              <div class="box box-success">
-                <div class="box-header" style="border-bottom: thin solid grey">
-                <a href="#!/resto" style="color:inherit">  <h2 class="proximaBold"  style="margin-top:0px;">lemm</h2></a>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.7</h4>
-                  </div>
-                  <br><label>Bogor Utara</label>
-                  <p>Jl. Raya Pajajaran No. 21, Bogor Utara, Bogor</p>
-                </div>
-                <div class="box-body proximaLight col-md-12">
-                  <div class="col-md-6">
-
-                    <label >Price :</label> Rp 25000 - 75000 ,-
-                    <br><label >Open At :</label>09.00 AM - 11.00 PM
-                  </div>
-                  <div class="col-md-6">
-                    <label>Type :</label> Dinner
-                    <br><label >Phone Number :</label> 08128393918
+                    <label >Open At :</label> {{rest.Hours_Start}} - {{rest.Hours_Closed}}
 
                   </div>
                 </div>
@@ -231,183 +99,16 @@
           </div>
         </div>
 
-        <div class="box-body left" ng-show="page1">
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="thumbnail" style="margin:10px;">
-                <img src="image/food1.jpg" alt="" style="max-height:165px;">
-              </div>
-            </div>
-            <div class="col-md-9">
-              <div class="box box-success">
-                <div class="box-header" style="border-bottom: thin solid grey">
-                <a href="#!/resto" style="color:inherit">  <h2 class="proximaBold"  style="margin-top:0px;">Lucky cat cafe</h2></a>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.9</h4>
-                  </div>
-                  <br><label>Jakarta</label>
-                  <p>Jl. Tebet Timur Dalam Raya 44B, Tebet, Jakarta</p>
-                </div>
-                <div class="box-body proximaLight col-md-12">
-                  <div class="col-md-6">
-
-                    <label >Price :</label> Rp 20000 - 100000 ,-
-                    <br><label >Open At :</label> 10.00 AM - 10.00 PM
-                  </div>
-                  <div class="col-md-6">
-                    <label>Type :</label> Lunch
-                    <br><label >Phone Number :</label> 08568859594
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="thumbnail" style="margin:10px;">
-                <img src="image/mood.jpg" alt="" style="max-height:165px;">
-              </div>
-            </div>
-            <div class="col-md-9">
-              <div class="box box-success">
-                <div class="box-header" style="border-bottom: thin solid grey">
-                  <a href="#!/resto" style="color:inherit"><h2 class="proximaBold"  style="margin-top:0px;">Lemongrass</h2></a>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.7</h4>
-                  </div>
-                  <br><label>Bogor Utara</label>
-                  <p>Jl. Raya Pajajaran No. 21, Bogor Utara, Bogor</p>
-                </div>
-                <div class="box-body proximaLight col-md-12">
-                  <div class="col-md-6">
-
-                    <label >Price :</label> Rp 25000 - 75000 ,-
-                    <br><label >Open At :</label>09.00 AM - 11.00 PM
-                  </div>
-                  <div class="col-md-6">
-                    <label>Type :</label> Dinner
-                    <br><label >Phone Number :</label> 08128393918
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="thumbnail" style="margin:10px;">
-                <img src="image/food1.jpg" alt="" style="max-height:165px;">
-              </div>
-            </div>
-            <div class="col-md-9">
-              <div class="box box-success">
-                <div class="box-header" style="border-bottom: thin solid grey">
-                <a href="#!/resto" style="color:inherit">  <h2 class="proximaBold"  style="margin-top:0px;">Lucky cat cafe</h2></a>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.9</h4>
-                  </div>
-                  <br><label>Jakarta</label>
-                  <p>Jl. Tebet Timur Dalam Raya 44B, Tebet, Jakarta</p>
-                </div>
-                <div class="box-body proximaLight col-md-12">
-                  <div class="col-md-6">
-
-                    <label >Price :</label> Rp 20000 - 100000 ,-
-                    <br><label >Open At :</label> 10.00 AM - 10.00 PM
-                  </div>
-                  <div class="col-md-6">
-                    <label>Type :</label> Lunch
-                    <br><label >Phone Number :</label> 08568859594
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="thumbnail" style="margin:10px;">
-                <img src="image/mood.jpg" alt="" style="max-height:165px;">
-              </div>
-            </div>
-            <div class="col-md-9">
-              <div class="box box-success">
-                <div class="box-header" style="border-bottom: thin solid grey">
-                <a href="#!/resto" style="color:inherit">  <h2 class="proximaBold"  style="margin-top:0px;">Lemongrass</h2></a>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.7</h4>
-                  </div>
-                  <br><label>Bogor Utara</label>
-                  <p>Jl. Raya Pajajaran No. 21, Bogor Utara, Bogor</p>
-                </div>
-                <div class="box-body proximaLight col-md-12">
-                  <div class="col-md-6">
-
-                    <label >Price :</label> Rp 25000 - 75000 ,-
-                    <br><label >Open At :</label>09.00 AM - 11.00 PM
-                  </div>
-                  <div class="col-md-6">
-                    <label>Type :</label> Dinner
-                    <br><label >Phone Number :</label> 08128393918
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="row">
-            <div class="col-md-3" >
-              <div class="thumbnail" style="margin:10px;">
-                <img src="image/mood.jpg" alt="" style="max-height:165px;">
-              </div>
-            </div>
-            <div class="col-md-9">
-              <div class="box box-success">
-                <div class="box-header" style="border-bottom: thin solid grey">
-                <a href="#!/resto" style="color:inherit">  <h2 class="proximaBold"  style="margin-top:0px;">Lemongrass</h2></a>
-                  <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.7</h4>
-                  </div>
-                  <br><label>Bogor Utara</label>
-                  <p>Jl. Raya Pajajaran No. 21, Bogor Utara, Bogor</p>
-                </div>
-                <div class="box-body proximaLight col-md-12">
-                  <div class="col-md-6">
-
-                    <label >Price :</label> Rp 25000 - 75000 ,-
-                    <br><label >Open At :</label>09.00 AM - 11.00 PM
-                  </div>
-                  <div class="col-md-6">
-                    <label>Type :</label> Dinner
-                    <br><label >Phone Number :</label> 08128393918
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="box-body" >
+        <!-- <div class="box-body" >
           <div class="row">
             <div class="col-md-12 text-center">
               <div>
-                <div class="btn btn-default" style="color:#111111;" ng-click="pindahPage()">
-                  <i class="fa fa-arrow-left"> </i>
-                </div>
-                <div class="btn btn-default" style="color:#111111;" ng-click="pindahPage()">
-                  <i class="fa fa-arrow-right"> </i>
+                <div class="btn btn-default" style="color:#111111;" ng-click="showMore()">
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="col-md-12">
         <p class="text-center" ng-show="loading"><img src="image/fluid-loader.gif" alt="" style="margin:50px;height:100px;"></p>

@@ -16,7 +16,7 @@ carimakan.config(function($routeProvider){
   })
   .when('/lists',{
     templateUrl : 'views/lists.php',
-    controller: 'listController'
+    controller: 'moodController'
   })
   .when('/resto',{
     templateUrl : 'views/restaurant.php',
@@ -29,5 +29,9 @@ carimakan.config(function($routeProvider){
   .when('/price',{
     templateUrl : 'views/price.php',
     controller: 'listController'
+  })
+  .when('/details/:id',{
+    templateUrl : 'views/restaurant.php',
+    controller: 'detailController'
   });
 });

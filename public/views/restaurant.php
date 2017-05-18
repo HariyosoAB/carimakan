@@ -31,7 +31,7 @@
             </li>
           </ul> -->
           <div style="height: 100%;">
-             <div uib-carousel active="active" interval="3000" style="" >
+             <div uib-carousel active="active" interval="3000" ng-init="counter=0"  >
                <div uib-slide index="0">
                  <div class="thumbnail vertical-align" style="border:none;box-shadow:none;background:black;min-height:30em;">
                    <img src="image/goodvibes.jpg" alt="" style="max-height:30em;max-width:100%;">
@@ -52,19 +52,20 @@
               </div>
               <div class="box-body proximaLight">
                 <div style="border-bottom: thin solid grey;margin-bottom:10px;">
-                  <h2 class="proximaBold">Lucky Cat Coffe & Kitchen</h2>
-                  <label>Keputih, Surabaya</label>
+                  <h2 class="proximaBold">{{info[0].Resto_Name}}</h2>
+                  <br>
+                  <strong>{{info[0].Resto_City}}</strong>
+                  <br><label>{{info[0].Resto_Location}}</label>
                 </div>
                 <div class="">
-                      <label>Type</label> : Lunch
-                      <br><label>Price</label> : Rp 20000 - 100000,-
-                    <br>  <label>Hours</label> : 10 AM - 10 PM
+                      <br><label>Price</label> : Rp {{info[0].Price_Min}} - {{info[0].Price_Max}},-
+                    <br>  <label>Hours</label> : {{info[0].Hours_Start}} - {{info[0].Hours_Closed}}
                     <br>  <Strong>Facilities</Strong> :
 
-                      <p>-  Wifi : Available</p>
-                      <p>-  Reservation : Available</p>
-                      <p>-  Smoking Area : N/A</p>
-                      <p>-  Free Parking : Available</p>
+                      <p>-  Wifi : <i ng-if="info[0].Wifi == '1'">Available</i><i ng-if="info[0].Wifi == '0'">Not Available</i></p>
+                      <p>-  Reservation :  <i ng-if="info[0].Reservation == '1'">Available</i><i ng-if="info[0].Reservation == '0'">Not Available</i></p>
+                      <p>-  Smoking Area :  <i ng-if="info[0].Smoking_Area == '1'">Available</i><i ng-if="info[0].Smoking_Area == '0'">Not Available</i></p>
+                      <p>-  Free Parking :  <i ng-if="info[0].Free_Parking == '1'">Available</i><i ng-if="info[0].Free_Parking == '0'">Not Available</i></p>
 
                 </div>
 
@@ -145,21 +146,21 @@
 
           <div ng-hide="loading">
 
-            <div class="box" style="padding:10px;">
+            <div class="box" style="padding:10px;" ng-repeat="review in reviews">
                 <div class="box-header" style="border-bottom:thin solid grey">
 
                     <div class="thumbnail col-md-3" style="width:75px;height:75px;margin:0px;">
-                        <img src="image/food1.jpg" alt="" style="height:100%; width:100%;">
+                        <img src="image/avatar/{{review.dp}}" alt="" style="height:100%; width:100%;">
                     </div>
                     <div class="col-md-9" style="margin:10px; margin-bottom:0px;">
                       <div class="row">
-                        <h3 class="proximaLight" style="margin:0px;">Ario Bimo</h3>
+                        <h3 class="proximaLight" style="margin:0px;">{{review.Reviews_Author}}</h3>
                       </div>
                       <div class="row">
-                        <p class="proximaLight"style="margin:0px;">Location: Jakarta</p>
+                        <p class="proximaLight"style="margin:0px;">Location: {{review.loc}}</p>
                       </div>
                       <div class="row">
-                        <p class="proximaLight">Reviews written: 33</p>
+                        <p class="proximaLight">Reviews written: {{review.banyak}}</p>
                       </div>
 
 
@@ -169,61 +170,21 @@
                 </div>
                 <div class="box-body">
                     <div class="proximaLight col-md-9 col-xs-12">
-                      <p>Ada banyak variasi tulisan Lorem Ipsum yang tersedia, tapi kebanyakan sudah mengalami perubahan bentuk, entah karena unsur humor atau kalimat yang diacak hingga nampak sangat tidak masuk akal. Jika anda ingin menggunakan tulisan Lorem Ipsum, anda harus yakin tidak ada bagian yang memalukan yang tersembunyi di tengah naskah tersebut. Semua generator Lorem Ipsum di internet cenderung untuk mengulang bagian-bagian tertentu. Karena itu inilah generator pertama yang sebenarnya di internet. Ia menggunakan kamus perbendaharaan yang terdiri dari 200 kata Latin, yang digabung dengan banyak contoh struktur kalimat untuk menghasilkan Lorem Ipsun yang nampak masuk akal. Karena itu Lorem Ipsun yang dihasilkan akan selalu bebas dari pengulangan, unsur humor yang sengaja dimasukkan, kata yang tidak sesuai dengan karakteristiknya dan lain sebagainya.
-
-</p>
+                      <p>{{review.Reviews_Description}} </p>
 
 
                     </div>
                     <div class="col-md-3 col-xs-12">
                       <div class="pull-right ic text-center ">
                           <h5 class="proximaBold" style="color:white;margin-bottom:0px;">Review Score</h5>
-                          <h3 class="proximaLight" style="color:white;display:block;margin-top:0px;">4.5</h2>
+                          <h3 class="proximaLight" style="color:white;display:block;margin-top:0px;">{{review.rating}}</h2>
                       </div>
                     </div>
 
                 </div>
                 <div class="box-footer with-border">
                     <div class="proximaLight">
-                        <small>posted on 22-04-2017</small>
-                    </div>
-                </div>
-            </div>
-            <div class="box" style="padding:20px;">
-                <div class="box-header" style="border-bottom:thin solid grey">
-
-                    <div class="thumbnail col-md-3" style="border-radius:50%;width:100px;height:100px;">
-                        <img src="image/avatar.png" alt="" style="border-radius:50%; height:100%; width:100%;">
-                    </div>
-                    <h2 class="proximaLight col-md-9" style="margin-top:40px;" >Aria Bimo</h2>
-                </div>
-                <div class="box-body">
-                    <div class="proximaLight">
-                      <p>Saya lumayan Suka makan disini</p>
-                    </div>
-                </div>
-                <div class="box-footer with-border">
-                    <div class="proximaLight">
-                        <small>posted on 22-04-2017</small>
-                    </div>
-                </div>
-            </div>
-            <div class="box" style="padding:20px;">
-                <div class="box-header" style="border-bottom:thin solid grey">
-
-                    <div class="thumbnail col-md-3" style="border-radius:50%;width:100px;height:100px;">
-                        <img src="image/food1.jpg" alt="" style="border-radius:50%; height:100%; width:100%;">
-                    </div>
-                    <h2 class="proximaLight col-md-9" style="margin-top:40px;" >Ario Bima</h2>
-                </div>
-                <div class="box-body">
-                    <div class="proximaLight">
-                      <p>Saya gak Suka makan disini</p>
-                    </div>
-                </div>
-                <div class="box-footer with-border">
-                    <div class="proximaLight">
-                        <small>posted on 22-04-2017</small>
+                        <small>{{review.Reviews_Time}}</small>
                     </div>
                 </div>
             </div>

@@ -14,13 +14,13 @@
                 </div>
           </div>
         </div>
-        <div class="col-md-4 col-sm-12 vertical-align"  id="formFront">
+        <div class="col-md-4 col-sm-12 vertical-align"  id="formFront" ng-show="!Auth.data">
             <div class="container" style="background:white;" id="isifrontform">
               <div class="row" style="text-align:center;" >
                    <h1 class="proximaBold" style="color: #86d528;font-size:60px; background:white;">Login</h1>
               </div>
               <div class="row" style="background:white;" >
-                  <form ng-submit="submitLogin()" method="POST" style="padding: 20px">
+                  <form ng-submit="submitLogin()" method="POST" style="padding: 20px" >
                     <div class="form-group">
                       <p class="proximaLight" style="color:grey;font-size:20px;">Username</p>
                     <input type="text" class="form-control proximaLight" id="usr" placeholder="Username" ng-model="loginData.username" required>

@@ -70,6 +70,6 @@ class UserController extends Controller
       $phpObj =  json_decode($json);
       var_dump($phpObj);
       $tes = $phpObj->query->results->channel->item->condition;
-      dd($tes);
+      dd($tes['text']);
    }
 }
