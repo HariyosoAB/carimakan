@@ -70,7 +70,7 @@
               <div class="col-md-9">
                 <div class="box box-success">
                   <div class="box-header" style="border-bottom: thin solid grey">
-                    <a href="#!/resto" style="color:inherit"><h2 class="proximaBold"  style="margin-top:0px;">{{feat.Resto_Name}}</h2></a>
+                    <a ng-href="#!/details/{{feat.ID_Resto}}" style="color:inherit"><h2 class="proximaBold"  style="margin-top:0px;">{{feat.Resto_Name}}</h2></a>
                     <div class="pull-right text-center" style="background-color:#86d528;">
                       <h4 class="proximaBold" style=" color:white; margin:10px;">{{feat.rating}}</h4>
                     </div>

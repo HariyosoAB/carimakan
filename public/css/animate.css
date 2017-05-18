@@ -9,12 +9,12 @@
  */
 
 .list.ng-enter{
-  -webkit-animation: slideInLeft  1s;
-  animation: slideInLeft  1s;
+  -webkit-animation: slideInLeft  0.5s;
+  animation: slideInLeft  0.5s;
 }
 .ng-enter{
-  -webkit-animation: fadeIn  1s;
-  animation: fadeIn  1s;
+  -webkit-animation: fadeIn  0.5s;
+  animation: fadeIn  0.5s;
 }
 
  #su{

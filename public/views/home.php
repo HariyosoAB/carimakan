@@ -14,7 +14,7 @@
                 </div>
           </div>
         </div>
-        <div class="col-md-4 col-sm-12 vertical-align"  id="formFront" ng-show="!Auth.data">
+        <div class="col-md-4 col-sm-12 vertical-align"  id="formFront" >
             <div class="container" style="background:white;" id="isifrontform">
               <div class="row" style="text-align:center;" >
                    <h1 class="proximaBold" style="color: #86d528;font-size:60px; background:white;">Login</h1>

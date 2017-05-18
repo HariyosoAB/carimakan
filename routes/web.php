@@ -33,6 +33,7 @@ Route::group(array('prefix' => 'api'), function(){
   Route::get('getFeatured','restoController@getFeatured');
   Route::get('getMood/{city}','restoController@getMood');
   Route::get('getDetails/{id}','restoController@getDetails');
+  Route::post('submitReview','restoController@submitReview');
 
 
 });

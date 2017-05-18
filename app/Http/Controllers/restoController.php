@@ -57,7 +57,20 @@ class restoController extends Controller
       $data['resto'] = DB::select("select * from resto where ID_Resto='".$id."'");
       $data['pictures'] = DB::select("select * from picture where Picture_Resto='".$id."'");
       $data['reviews'] = DB::select("select * from reviews , (select Display_Picture as dp, Username as un , Location as loc from user) as profpict , (select Reviews_Author ra, count(*) as banyak from reviews group by Reviews_Author) as manyc where Reviews_Resto='".$id."' and profpict.un = reviews.Reviews_Author and manyc.ra=reviews.Reviews_Author");
+      $tes = DB::select("select Reviews_Resto, avg(Reviews_Food) as averageFood, avg(Reviews_Place) as averagePlace,avg(Reviews_Price) as averagePrice,avg(Reviews_Service) as averageService from reviews WHERE Reviews_Resto = '".$id."' group by Reviews_Resto");
+      $data['avg']['overall'] = ($tes[0]->averageFood + $tes[0]->averagePlace + $tes[0]->averagePrice + $tes[0]->averageService)/4;
+      $data['avg']['food'] = $tes[0]->averageFood;
+      $data['avg']['place'] = $tes[0]->averagePlace;
+      $data['avg']['price'] = $tes[0]->averagePrice;
+      $data['avg']['service'] = $tes[0]->averageService;
       return Response::json($data);
+    }
+    public function submitReview(Request $request){
+        DB::table('reviews')->insert([
+          ['Reviews_Resto'=>$request->ID_Resto,'Reviews_Author' => $request->Author,'Reviews_Description'=> $request->text, 'Reviews_Food' => $request->rate,'Reviews_Service' => $request->rate2,'Reviews_Price' => $request->rate3,'Reviews_Place' => $request->rate4]
+        ]);
+
+
     }
 
 }

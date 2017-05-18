@@ -9,6 +9,14 @@ angular.module('queryService',[]).factory('Query',function($http,CSRF_TOKEN){
     },
     getDetails: function(id){
       return $http.get('api/getDetails/'+id);
+    },
+    submitComment: function(commentData){
+      return $http({
+        method: 'POST',
+        url: 'api/submitReview',
+        headers: { 'Content-Type' : 'application/x-www-form-urlencoded'},
+        data: $.param(commentData)
+      });
     }
   }
 

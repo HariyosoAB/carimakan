@@ -76,7 +76,6 @@ mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal
   $scope.closed.sidebar = true;
   $anchorScroll();
   $scope.loading = true;
-  $scope.userData={};
   $scope.loginData={};
 
   Users.logData().then(function(data){
@@ -111,7 +110,6 @@ mainctrl.controller('categoriesController',['$scope','$location','$anchorScroll'
   $scope.closed.sidebar = true;
   $anchorScroll();
   $scope.loading = true;
-  $scope.userData={};
   $scope.loginData={};
   Users.logData().then(function(data){
 
@@ -238,29 +236,80 @@ mainctrl.controller('detailController',['$scope','$location','$anchorScroll','sw
     $scope.closed.sidebar = true;
     $anchorScroll();
     $scope.loading = true;
-
-
+    $scope.commload= false;
+    var a;
     Users.logData().then(function(data){
 
       if(data != null && data!= undefined){
         $scope.Auth.data = data.data.user.Login_User;
         $scope.Auth.picture = data.data.userdet.Display_Picture;
+        a = $scope.Auth.data;
       }
       else {
         console.log("null");
       }
     });
 
+
+
     Query.getDetails($scope.restoID).then(function(detailsData){
         $scope.info = detailsData.data.resto;
         $scope.reviews = detailsData.data.reviews;
         $scope.pictures = detailsData.data.pictures;
+        $scope.avg = detailsData.data.avg;
 
+        console.log($scope.avg);
         for (i = 0; i < $scope.reviews.length; i++) {
             $scope.reviews[i].rating = (parseFloat(detailsData.data.reviews[i].Reviews_Price) + parseFloat(detailsData.data.reviews[i].Reviews_Food) + parseFloat(detailsData.data.reviews[i].Reviews_Place)  +parseFloat(detailsData.data.reviews[i].Reviews_Service) )/4;
         }
 
+
         $scope.loading = false;
     });
+
+      $scope.submitComment= function(){
+         if ($scope.commentData.rate == null || $scope.commentData.rate2 == null || $scope.commentData.rate3 == null ||$scope.commentData.rate4 == null ||$scope.commentData.text == null) {
+               swal(
+             'Review Failed',
+             'Please input ratings',
+             'error')
+         }
+         else {
+            $scope.commentData.ID_Resto =  $scope.restoID;
+            $scope.commentData.Author = a;
+            Query.submitComment($scope.commentData).then(function(){
+                $scope.commload= true;
+                Query.getDetails($scope.restoID).then(function(detailsData){
+                    $scope.info = detailsData.data.resto;
+                    $scope.reviews = detailsData.data.reviews;
+                    $scope.pictures = detailsData.data.pictures;
+                    $scope.avg = detailsData.data.avg;
+
+                    console.log($scope.avg);
+                    for (i = 0; i < $scope.reviews.length; i++) {
+                        $scope.reviews[i].rating = (parseFloat(detailsData.data.reviews[i].Reviews_Price) + parseFloat(detailsData.data.reviews[i].Reviews_Food) + parseFloat(detailsData.data.reviews[i].Reviews_Place)  +parseFloat(detailsData.data.reviews[i].Reviews_Service) )/4;
+                    }
+                    $scope.commentData= {};
+                    $scope.commentform.$setPristine();
+                    $scope.commload = false;
+                });
+            });
+         }
+      }
+
+      Query.getFeatured().then(function(data){
+
+        if(data != null && data!= undefined){
+          $scope.featuredData = data.data.featured;
+          for (i = 0; i < $scope.featuredData.length; i++) {
+              $scope.featuredData[i].rating = (parseFloat($scope.featuredData[i].average_food) + parseFloat($scope.featuredData[i].average_price) + parseFloat($scope.featuredData[i].average_place) + parseFloat($scope.featuredData[i].average_service))/4;
+
+          }
+        }
+        else {
+          console.log("null");
+        }
+      });
+
 
 }]);
