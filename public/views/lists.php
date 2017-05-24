@@ -18,7 +18,7 @@
               </select>
             </div>
             <div class="col-md-7">
-              <input type="text" name="" value="" class="form-control proximaLight" placeholder="Cari nama restoran" ng-model="searchData.nama">
+              <input type="text" name="" value="" class="form-control proximaLight" placeholder="Find Restaurant" ng-model="searchData.nama">
             </div>
             <a><div class="btn btn-default" ng-click="searchit()">
               search

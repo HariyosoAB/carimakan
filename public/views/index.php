@@ -134,17 +134,15 @@
             <div class="col-6 col-sm-6 col-xs-12 container">
                 <h3 class="proximaBold" style="color: #86d528">About Us</h3>
                 <p class="proximaLight words" style="color:white;">
-                  Aplikasi berbasis website untuk mencari tempat makan di sekitarmu !
+                  Carimakan is a Website-based apps to find best places to eat around you! 
 
-                  Temukan makanan terbaik sesuai mood mu
+                  Find the best food to suit your mood.<br>
 
-                  Cuaca sedang hujan? intip makanan yang cocok disaat hujan
+                  The weather is raining? Find the food that suitable in the rain. <br>
 
-                  Lagi travelling dan bingung mau nyari makan dimana? temukan tempa makan disekitarmu
+                  Traveling and confused where to eat ? Find your meal around.<br> 
 
-                  Lagi tanggal tua? temukan tempat makan sesuai isi dompetmu
-
-                  Pengen ke tempat makan yg lagi hit? temukan tempat makan yg instagramable sesuai gayamu                </p>
+                  </p>
 
             </div>
             <div class="col-6 col-sm-6 col-xs-12 container">
