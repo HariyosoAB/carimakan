@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/sets','restoController@getMood');
+Route::get('/sets','restoController@getAll');
 
 Route::get('/s',function(){
   echo Auth::user();
@@ -33,6 +33,14 @@ Route::group(array('prefix' => 'api'), function(){
   Route::get('getFeatured','restoController@getFeatured');
   Route::get('getMood/{city}','restoController@getMood');
   Route::get('getDetails/{id}','restoController@getDetails');
+  Route::get('getSearch/{nama}','restoController@search');
+  Route::get('getSuggested/{id}','restoController@getSuggested');
+  Route::get('getPopular','restoController@getPopular');
+  Route::get('getVibes','restoController@getVibes');
+  Route::get('getPrice','restoController@getPrice');
+  Route::get('getEmpty','restoController@getEmpty');
+  Route::get('getAll','restoController@getAll');
+
   Route::post('submitReview','restoController@submitReview');
 
 

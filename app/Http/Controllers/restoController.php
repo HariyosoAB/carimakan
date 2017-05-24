@@ -13,9 +13,34 @@ use File;
 use Log;
 class restoController extends Controller
 {
+    public function search($name){
+      $data['query'] = DB::select("select * from resto, (select min(ID_Picture) as ID_Picture,Picture_Resto from picture group by Picture_Resto) as pic, (select Picture_Filename ,ID_Picture from picture) as pct where  pic.Picture_Resto = resto.ID_Resto and pic.ID_Picture = pct.ID_Picture and Resto_Name like '%".$name."%'");
+      return Response::json($data);
+    }
     public function getFeatured(){
-      $data['featured'] = DB::select("select DISTINCT * from (SELECT min(ID_Picture) as id_pic,Picture_Resto FROM picture GROUP BY Picture_Resto ) as pic, (SELECT Picture_Filename, ID_Picture from picture) as pct ,resto, (select Reviews_Resto, avg(Reviews_Food) as average_food,AVG(Reviews_Price) as average_price, AVG(Reviews_Place) as average_place , AVG(Reviews_Service) as average_service from reviews GROUP by reviews_resto) AS rev where pic.id_pic = pct.ID_Picture and pic.Picture_Resto = resto.ID_Resto and rev.Reviews_Resto = resto.ID_Resto ORDER by rev.average_service desc, rev.average_price desc, rev.average_place desc, rev.average_food desc limit 5");
+      $data['featured'] = DB::select("select DISTINCT * from (SELECT min(ID_Picture) as id_pic,Picture_Resto FROM picture GROUP BY Picture_Resto ) as pic, (SELECT Picture_Filename, ID_Picture from picture) as pct ,resto, (select Reviews_Resto, avg(Reviews_Food) as average_food,AVG(Reviews_Price) as average_price, AVG(Reviews_Place) as average_place , AVG(Reviews_Service) as average_service from reviews GROUP by reviews_resto) AS rev , (select reve.Reviews_resto as a , AVG((reve.average_food+reve.average_price+reve.average_place+reve.average_service)/4) as average from (select Reviews_Resto, avg(Reviews_Food) as average_food, AVG(Reviews_Price) as average_price, AVG(Reviews_Place) as average_place , AVG(Reviews_Service) as average_service from reviews GROUP by reviews_resto) as reve GROUP by reve.Reviews_Resto) as rav where pic.id_pic = pct.ID_Picture and pic.Picture_Resto = resto.ID_Resto and rev.Reviews_Resto = resto.ID_Resto and rav.a = rev.Reviews_Resto order by rav.average desc limit 5");
 
+      return Response::json($data);
+    }
+    public function getSuggested($id){
+      $rest = DB::select("select * from resto where ID_Resto = '".$id."'");
+      $data['featured'] = DB::select("select * from resto , (select min(ID_Picture) as ID_Picture,Picture_Resto from picture group by Picture_Resto) as pic, (select Picture_Filename ,ID_Picture from picture) as pct where Type = '".$rest[0]->Type."' and Resto_City = '".$rest[0]->Resto_City."' and pic.Picture_Resto = resto.ID_Resto and pic.ID_Picture = pct.ID_Picture");
+    //  dd($data);
+      return Response::json($data);
+
+    }
+    public function getPopular(){
+      $data['query'] = DB::select("select * from (select Reviews_Resto as rr,count(*)as banyak from reviews group by Reviews_Resto) as pop, resto ,(select min(ID_Picture) as ID_Picture,Picture_Resto from picture group by Picture_Resto) as pic, (select Picture_Filename ,ID_Picture from picture) as pct where pic.Picture_Resto = resto.ID_Resto and pic.ID_Picture = pct.ID_Picture and resto.ID_Resto= pop.rr order by pop.banyak desc");
+      return Response::json($data);
+    }
+    public function getVibes(){
+      $data['query'] = DB::select("select * from resto ,(select Reviews_Resto,avg(Reviews_Place) as Reviews_Place from reviews group by Reviews_Resto) as place, (select min(ID_Picture) as ID_Picture,Picture_Resto from picture group by Picture_Resto) as pic, (select Picture_Filename ,ID_Picture from picture) as pct where place.Reviews_Resto = resto.ID_Resto and pic.Picture_Resto = resto.ID_Resto and pic.ID_Picture = pct.ID_Picture order by place.Reviews_Place desc");
+      //dd($data);
+      return Response::json($data);
+    }
+    public function getPrice(){
+      $data['query'] = DB::select("select * from resto , (select min(ID_Picture) as ID_Picture,Picture_Resto from picture group by Picture_Resto) as pic, (select Picture_Filename ,ID_Picture from picture) as pct where pic.Picture_Resto = resto.ID_Resto and pic.ID_Picture = pct.ID_Picture order by resto.Price_Max asc");
+      //dd($data);
       return Response::json($data);
     }
     public function getMood($city){
@@ -53,16 +78,31 @@ class restoController extends Controller
       return Response::json($data);
     }
 
+    public function getEmpty(){
+      $data['norev'] = DB::select("select * from resto, (select min(ID_Picture) as ID_Picture,Picture_Resto from picture group by Picture_Resto) as pic, (select Picture_Filename ,ID_Picture from picture) as pct where pic.ID_Picture = pct.ID_Picture and pic.Picture_Resto = resto.ID_Resto and ID_Resto not in (select Reviews_Resto from reviews )");
+      return Response::json($data);
+    }
     public function getDetails($id){
       $data['resto'] = DB::select("select * from resto where ID_Resto='".$id."'");
       $data['pictures'] = DB::select("select * from picture where Picture_Resto='".$id."'");
       $data['reviews'] = DB::select("select * from reviews , (select Display_Picture as dp, Username as un , Location as loc from user) as profpict , (select Reviews_Author ra, count(*) as banyak from reviews group by Reviews_Author) as manyc where Reviews_Resto='".$id."' and profpict.un = reviews.Reviews_Author and manyc.ra=reviews.Reviews_Author");
       $tes = DB::select("select Reviews_Resto, avg(Reviews_Food) as averageFood, avg(Reviews_Place) as averagePlace,avg(Reviews_Price) as averagePrice,avg(Reviews_Service) as averageService from reviews WHERE Reviews_Resto = '".$id."' group by Reviews_Resto");
-      $data['avg']['overall'] = ($tes[0]->averageFood + $tes[0]->averagePlace + $tes[0]->averagePrice + $tes[0]->averageService)/4;
-      $data['avg']['food'] = $tes[0]->averageFood;
-      $data['avg']['place'] = $tes[0]->averagePlace;
-      $data['avg']['price'] = $tes[0]->averagePrice;
-      $data['avg']['service'] = $tes[0]->averageService;
+      if(NULL != $tes){
+          $data['avg']['overall'] = ($tes[0]->averageFood + $tes[0]->averagePlace + $tes[0]->averagePrice + $tes[0]->averageService)/4;
+          $data['avg']['overall']= round( $data['avg']['overall'], 2, PHP_ROUND_HALF_UP);
+          $data['avg']['food'] = $tes[0]->averageFood;
+          $data['avg']['place'] = $tes[0]->averagePlace;
+          $data['avg']['price'] = $tes[0]->averagePrice;
+          $data['avg']['service'] = $tes[0]->averageService;
+        }
+        else{
+              $data['avg']['overall']=0;
+              $data['avg']['food'] = 0;
+              $data['avg']['place'] = 0;
+              $data['avg']['price'] =0;
+              $data['avg']['service'] = 0;
+        }
+
       return Response::json($data);
     }
     public function submitReview(Request $request){
@@ -70,7 +110,13 @@ class restoController extends Controller
           ['Reviews_Resto'=>$request->ID_Resto,'Reviews_Author' => $request->Author,'Reviews_Description'=> $request->text, 'Reviews_Food' => $request->rate,'Reviews_Service' => $request->rate2,'Reviews_Price' => $request->rate3,'Reviews_Place' => $request->rate4]
         ]);
 
+    }
+
+    public function getAll(){
+        $data['query'] = DB::select("select * from resto,  (SELECT min(ID_Picture) as id_pic,Picture_Resto FROM picture GROUP BY Picture_Resto ) as pic, (SELECT Picture_Filename, ID_Picture from picture) as pct where pic.id_pic = pct.ID_Picture and pic.Picture_Resto = resto.ID_Resto");
+        return Response::json($data);
 
     }
+
 
 }

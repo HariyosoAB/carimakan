@@ -9,9 +9,9 @@
     </div>
 
     <div class="col-md-12 vertical-align" style="height:25vh;" >
-      <a href="#!/lists" ng-show="Auth.data">
+      <a href="#!/all" ng-show="Auth.data">
         <div class="btn btn-lg" style="background:#86d528; color:white;border-radius:10px">
-          Find best place near you
+          Show all restaurant available
         </div>
       </a>
     </div>
@@ -31,7 +31,7 @@
               </div>
           </div>
         </a>
-        <a href="#!/lists">
+        <a href="#!/vibes">
           <div class="col-md-6 col-xs-12">
               <div class="bggvs wrapper text-center vertical-align" style="height:10em;margin-top:10px;">
                 <h1 class="proximaBold" style="color:white;">Good Vibes</h1>
@@ -58,7 +58,7 @@
 
     <div class="box" style="border:0;box-shadow: none; margin:2% 5%; padding:0px 50px">
       <div class="box-header" style="border-bottom: thin solid grey">
-        <h1 class="proximaBold ">Featured</h1>
+        <h1 class="proximaBold ">Highest Rating</h1>
       </div>
       <div class="box-body">
             <div class="row" ng-repeat="feat in featuredData">

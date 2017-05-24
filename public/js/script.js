@@ -23,15 +23,27 @@ carimakan.config(function($routeProvider){
     controller: 'listController'
   })
   .when('/popular',{
-    templateUrl : 'views/popular.php',
-    controller: 'listController'
+    templateUrl : 'views/lists.php',
+    controller: 'popularController'
+  })
+  .when('/vibes',{
+    templateUrl : 'views/lists.php',
+    controller: 'vibesController'
+  })
+  .when('/all',{
+    templateUrl : 'views/lists.php',
+    controller: 'allController'
   })
   .when('/price',{
-    templateUrl : 'views/price.php',
-    controller: 'listController'
+    templateUrl : 'views/lists.php',
+    controller: 'priceController'
   })
   .when('/details/:id',{
     templateUrl : 'views/restaurant.php',
     controller: 'detailController'
+  })
+  .when('/search',{
+    templateUrl : 'views/lists.php',
+    controller: 'searchController'
   });
 });

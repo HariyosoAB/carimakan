@@ -119,8 +119,8 @@
             </a>
           </div>
 
-        <form ng-submit="search()" method="GET">
-                      <input type="text" class="searchbr pull-right proximaLight" placeholder="Search">
+        <form ng-keypress="($event.charCode==13)? search() : return" >
+                      <input type="text" ng-model="search.searchname" class="searchbr pull-right proximaLight" placeholder="Search">
         </form>
         </nav>
 

@@ -1,11 +1,35 @@
 var mainctrl = angular.module('mainCtrl',['userService','queryService']);
 
-mainctrl.controller('sidebarController',['$scope','swal','$location','Users',function($scope,swal,$location,Users){
+
+
+
+mainctrl.controller('searchController',['$scope','swal','$location','Users','Query',function($scope,swal,$location,Users,Query){
+  $scope.loading= true;
+    Query.getSearch($scope.search.searchname).then(function(searched){
+    $scope.resto = searched.data.query;
+    $scope.loading= false;
+  });
+}]);
+
+
+
+mainctrl.controller('sidebarController',['$scope','swal','$location','Users','Query',function($scope,swal,$location,Users,Query){
   $scope.closed={};
   $scope.closed.sidebar = true;
   $scope.Auth = {};
   $scope.Auth.data =null;
+  $scope.search = function(){
+    $location.url('/search');
+  }
+  $scope.searchData = {};
+  $scope.searchit = function(){
+    Query.find($scope.searchData).then(function(){
+        
+    },function(){
 
+          );
+    });
+  }
   $scope.signUp = function(){
     swal({
       title: 'Sign Up',
@@ -51,7 +75,27 @@ mainctrl.controller('sidebarController',['$scope','swal','$location','Users',fun
 
 
 
+mainctrl.controller('popularController',['$scope','swal','$anchorScroll','$location','Users','Query',function($scope,swal,$anchorScroll,$location,Users,Query){
+    $scope.closed.sidebar = true;
+    $anchorScroll();
+    $scope.loading = true;
 
+    Users.logData().then(function(data){
+
+      if(data != null && data!= undefined){
+        $scope.Auth.data = data.data.user.Login_User;
+        $scope.Auth.picture = data.data.userdet.Display_Picture;
+      }
+      else {
+        console.log("null");
+      }
+    });
+
+    Query.getPopular().then(function(searched){
+    $scope.resto = searched.data.query;
+    $scope.loading= false;
+  });
+  }]);
 
 
   $scope.toggleSidebar = function(){
@@ -71,13 +115,77 @@ mainctrl.controller('sidebarController',['$scope','swal','$location','Users',fun
   }
 
 }]);
+mainctrl.controller('popularController',['$scope','swal','$anchorScroll','$location','Users','Query',function($scope,swal,$anchorScroll,$location,Users,Query){
+  $scope.closed.sidebar = true;
+  $anchorScroll();
+  $scope.loading = true;
 
+  Users.logData().then(function(data){
+
+    if(data != null && data!= undefined){
+      $scope.Auth.data = data.data.user.Login_User;
+      $scope.Auth.picture = data.data.userdet.Display_Picture;
+    }
+    else {
+      console.log("null");
+    }
+  });
+
+  Query.getPopular().then(function(searched){
+    $scope.resto = searched.data.query;
+    $scope.loading= false;
+    console.log(searched.data.query);
+
+    },function(){
+      console.log("ss");
+    });
+    Query.getEmpty().then(function(searched){
+        $scope.empty = searched.data.norev;
+        $scope.loading= false;
+        console.log($scope.resto);
+
+        },function(){
+          console.log("ss");
+        });
+}]);
+
+
+
+mainctrl.controller('allController',['$scope','swal','$anchorScroll','$location','Users','Query',function($scope,swal,$anchorScroll,$location,Users,Query){
+  $scope.closed.sidebar = true;
+  $anchorScroll();
+  $scope.loading = true;
+
+  Users.logData().then(function(data){
+
+    if(data != null && data!= undefined){
+      $scope.Auth.data = data.data.user.Login_User;
+      $scope.Auth.picture = data.data.userdet.Display_Picture;
+    }
+    else {
+      console.log("null");
+    }
+  });
+  Query.getAlle().then(function(searched){
+    $scope.resto = searched.data.query;
+    $scope.loading= false;
+    console.log($scope.resto);
+
+
+    },function(){
+      console.log("ss");
+    });
+
+
+
+}]);
 
 mainctrl.controller('mainController',['$scope','$location','$anchorScroll','swal','Users',function($scope,$location,$anchorScroll,swal,Users){
   $scope.closed.sidebar = true;
   $anchorScroll();
   $scope.loading = true;
   $scope.loginData={};
+  $scope.mood = false;
 
   Users.logData().then(function(data){
 
@@ -138,8 +246,8 @@ mainctrl.controller('categoriesController',['$scope','$location','$anchorScroll'
   });
 
 
-
 }]);
+
 
 
 mainctrl.controller('moodController',['$scope','$location','$anchorScroll','swal','Users','Query',function($scope,$location,$anchorScroll,swal,Users,Query){
@@ -180,6 +288,75 @@ mainctrl.controller('moodController',['$scope','$location','$anchorScroll','swal
   });
 
 }]);
+
+
+mainctrl.controller('vibesController',['$scope','$location','$anchorScroll','swal','Users','Query',function($scope,$location,$anchorScroll,swal,Users,Query){
+  $scope.closed.sidebar = true;
+  $anchorScroll();
+  $scope.loading = true;
+
+  Users.logData().then(function(data){
+
+    if(data != null && data!= undefined){
+      $scope.Auth.data = data.data.user.Login_User;
+      $scope.Auth.picture = data.data.userdet.Display_Picture;
+    }
+    else {
+      console.log("null");
+    }
+  });
+
+
+  Query.getVibes().then(function(searched){
+    $scope.resto = searched.data.query;
+    $scope.loading= false;
+    console.log($scope.resto);
+    for (i = 0; i < $scope.resto.length; i++) {
+      console.log( $scope.resto[i]);
+        $scope.resto[i].Reviews_Place  = Math.round($scope.resto[i].Reviews_Place*100)/100;
+    }
+
+    },function(){
+      console.log("ss");
+    });
+  Query.getEmpty().then(function(searched){
+      $scope.empty = searched.data.norev;
+      $scope.loading= false;
+      console.log($scope.resto);
+
+      },function(){
+        console.log("ss");
+      });
+}]);
+
+
+mainctrl.controller('priceController',['$scope','$location','$anchorScroll','swal','Users','Query',function($scope,$location,$anchorScroll,swal,Users,Query){
+  $scope.closed.sidebar = true;
+  $anchorScroll();
+  $scope.loading = true;
+
+  Users.logData().then(function(data){
+
+    if(data != null && data!= undefined){
+      $scope.Auth.data = data.data.user.Login_User;
+      $scope.Auth.picture = data.data.userdet.Display_Picture;
+    }
+    else {
+      console.log("null");
+    }
+  });
+
+
+  Query.getPrice().then(function(searched){
+    $scope.resto = searched.data.query;
+    $scope.loading= false;
+    console.log($scope.resto);
+    $scope.price= true;
+    },function(){
+      console.log("ss");
+    });
+}]);
+
 
 
 mainctrl.controller('listController',['$scope','$location','$anchorScroll','Users',function($scope,$location,$anchorScroll,Users){
@@ -254,7 +431,7 @@ mainctrl.controller('detailController',['$scope','$location','$anchorScroll','sw
       }
     });
 
-    Query.getFeatured().then(function(data){
+    Query.getSuggested($scope.restoID).then(function(data){
 
       if(data != null && data!= undefined){
         $scope.featuredData = data.data.featured;

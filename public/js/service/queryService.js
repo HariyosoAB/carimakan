@@ -1,5 +1,8 @@
 angular.module('queryService',[]).factory('Query',function($http,CSRF_TOKEN){
   return{
+    find: function(data){
+      return $http.get('api/getFeatured');
+    },
     getFeatured: function(){
       return $http.get('api/getFeatured');
     },
@@ -9,6 +12,28 @@ angular.module('queryService',[]).factory('Query',function($http,CSRF_TOKEN){
     },
     getDetails: function(id){
       return $http.get('api/getDetails/'+id);
+    },
+    getSearch: function(name){
+      return $http.get('api/getSearch/'+name);
+    },
+    getPopular: function(){
+      console.log("ww");
+      return $http.get('api/getPopular');
+    },
+    getSuggested: function(name){
+      return $http.get('api/getSuggested/'+name);
+    },
+    getVibes: function() {
+      return $http.get('api/getVibes');
+    },
+    getPrice: function() {
+      return $http.get('api/getPrice');
+    },
+    getEmpty: function() {
+      return $http.get('api/getEmpty');
+    },
+    getAlle: function() {
+      return $http.get('api/getAll');
     },
     submitComment: function(commentData){
       return $http({

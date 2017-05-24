@@ -5,23 +5,26 @@
         <h1 class="proximaBold" >Search</h1>
       </div>
       <div class="box-body">
-
-        <div class="form-group " style="margin-top:20px;" >
+        <form method="post">
+          <div class="form-group " style="margin-top:20px;" >
             <div class="col-md-3">
-              <select class="form-control proximaLight">
-                <option Selected>Surabaya</option>
-                <option Selected>Jakarta</option>
-                <option Selected>Bandung</option>
+              <select class="form-control proximaLight" ng-model="searchData.kota">
+                <option value="Surabaya"Selected>Surabaya</option>
+                <option value="Jakarta">Jakarta</option>
+                <option value="Bandung">Bandung</option>
+                <option value="Semarang">Semarang</option>
+                <option value="DIY">DIY</option>
+                <option value="Banten" >Banten</option>
               </select>
             </div>
-        <div class="col-md-7">
-          <input type="text" name="" value="" class="form-control proximaLight">
-
-        </div>
-            <a href="#!/lists"><div class="btn btn-default" ng-click="search()">
+            <div class="col-md-7">
+              <input type="text" name="" value="" class="form-control proximaLight" placeholder="Cari nama restoran" ng-model="searchData.nama">
+            </div>
+            <a><div class="btn btn-default" ng-click="searchit()">
               search
             </div></a>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -58,13 +61,7 @@
           <h1 class="proximaBold ">Search Result</h1>
 
         </div>
-        <div class="form-group proximaLight" style="margin:10px 20px;">
-          Sort By:
-          <select class="form-control" name="">
-              <option> Rating</option>
-              <option> Price</option>
-          </select>
-        </div>
+
 
         <div class="box-body right" >
 
@@ -78,9 +75,19 @@
               <div class="box box-success">
                 <div class="box-header" style="border-bottom: thin solid grey">
                   <a ng-href="#!/details/{{rest.ID_Resto}}" style="color:inherit"><h2 class="proximaBold"  style="margin-top:0px;">{{rest.Resto_Name}}</h2></a>
-                  <!-- <div class="pull-right text-center" style="background-color:#86d528;">
-                    <h4 class="proximaBold" style=" color:white; margin:10px;">4.9</h4>
-                  </div> -->
+
+                  <div class="pull-right text-center" style="background-color:#86d528;" ng-show="rest.banyak">
+                    <h4 class="proximaBold" style=" color:white; margin:10px;">Reviewed</h4><br>
+                    <h4 class="proximaBold" style=" color:white; margin:10px;">{{rest.banyak}} time(s)</h4>
+                  </div>
+                  <div class="pull-right text-center" style="background-color:#86d528;" ng-show="rest.Reviews_Place">
+                    <h4 class="proximaBold" style=" color:white; margin:10px;">Place Rating</h4><br>
+                    <h4 class="proximaBold" style=" color:white; margin:10px;">{{rest.Reviews_Place}}</h4>
+                  </div>
+                  <div class="pull-right text-center" style="background-color:#86d528;" ng-show="price">
+                    <h4 class="proximaBold" style=" color:white; margin:10px;">Max Price</h4><br>
+                    <h4 class="proximaBold" style=" color:white; margin:10px;">{{rest.Price_Max}}</h4>
+                  </div>
                   <br><label>{{rest.Resto_City}}</label>
                   <p>{{rest.Resto_Location}}</p>
                 </div>
@@ -90,6 +97,36 @@
                   </div>
                   <div class="col-md-6">
                     <label >Open At :</label> {{rest.Hours_Start}} - {{rest.Hours_Closed}}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row" ng-repeat="restem in empty" ng-show="empty">
+            <div class="col-md-3" >
+              <div class="thumbnail" style="margin:10px;">
+                <img src="image/resto/{{restem.Picture_Filename}}" alt="" style="max-height:165px;">
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="box box-success">
+                <div class="box-header" style="border-bottom: thin solid grey">
+                  <a ng-href="#!/details/{{restem.ID_Resto}}" style="color:inherit"><h2 class="proximaBold"  style="margin-top:0px;">{{restem.Resto_Name}}</h2></a>
+                  <div class="pull-right text-center" style="background-color:#86d528;">
+                    <h4 class="proximaBold" style=" color:white; margin:10px;">Reviews:</h4><br>
+                    <h4 class="proximaBold" style=" color:white; margin:10px;">Not available</h4>
+                  </div>
+                  <br><label>{{restem.Resto_City}}</label>
+                  <p>{{restem.Resto_Location}}</p>
+                </div>
+                <div class="box-body proximaLight col-md-12">
+                  <div class="col-md-6">
+                    <label >Price :</label> Rp {{restem.Price_Min}} - {{restem.Price_Max}} ,-
+                  </div>
+                  <div class="col-md-6">
+                    <label >Open At :</label> {{restem.Hours_Start}} - {{restem.Hours_Closed}}
 
                   </div>
                 </div>
