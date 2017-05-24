@@ -1,6 +1,6 @@
 <div class="container-fluid" style=" padding:0px;background-color:#ededed;min-height:768px;" >
   <div class="col-md-11">
-    <div class="box" style="border:0;box-shadow: none; margin:2% 5%; padding:0px 50px" ng>
+    <!-- <div class="box" style="border:0;box-shadow: none; margin:2% 5%; padding:0px 50px" ng>
       <div class="box-header" style="border-bottom:thin solid grey">
         <h1 class="proximaBold" >Search</h1>
       </div>
@@ -26,7 +26,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
 
     <div class="row " ng-show="mood">
       <div class="col-md-12">
