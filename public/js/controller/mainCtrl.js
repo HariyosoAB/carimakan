@@ -22,14 +22,7 @@ mainctrl.controller('sidebarController',['$scope','swal','$location','Users','Qu
     $location.url('/search');
   }
   $scope.searchData = {};
-  $scope.searchit = function(){
-    Query.find($scope.searchData).then(function(){
-        
-    },function(){
 
-          );
-    });
-  }
   $scope.signUp = function(){
     swal({
       title: 'Sign Up',

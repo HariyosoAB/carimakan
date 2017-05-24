@@ -1,8 +1,5 @@
 angular.module('queryService',[]).factory('Query',function($http,CSRF_TOKEN){
   return{
-    find: function(data){
-      return $http.get('api/getFeatured');
-    },
     getFeatured: function(){
       return $http.get('api/getFeatured');
     },
